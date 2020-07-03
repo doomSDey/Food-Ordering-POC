@@ -81,7 +81,7 @@ body, html {
   margin:auto;
   margin-top: 4vw;
 
-  text-align: center;
+  text-align: left;
   align-items: center;
   border: 0;
   margin-right: 0px;
@@ -94,7 +94,7 @@ body, html {
 .btn2{
   align-items: center;
   border-radius: 25px;
-  height: 5vw;
+  height: 6vw;
   text-align: center;
   vertical-align:middle;
   margin: auto;
@@ -104,7 +104,53 @@ body, html {
 
 .btn1{
   margin-left: 2vw;
-  margin-right: 8.5vw;
+  margin-right: 14vw;
   margin-top: 4vw;
+  al
   align-items: flex-start;
+}
+
+
+/* The Modal (background) */
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  /* Position it in the top right corner outside of the modal */
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
 }
