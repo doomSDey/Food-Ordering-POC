@@ -46,10 +46,11 @@ body, html {
 }
 
 .logo{
-  margin: auto;
+  display: flex;
+  height: 50%;
+  align-items: flex-end;
   text-align: center;
-  align-items: center;
-  height: 25vw;
+  margin-bottom: auto;
 }
 
 .tag{
@@ -60,15 +61,11 @@ body, html {
   margin: auto;
 }
 
-.bd{
-  align-items: center;
-  text-align: center;
-  min-height: 100%;
-}
 
 .search{
   border-radius: 25px;
   margin:auto;
+  margin-top: 10px;
   text-align: center;
   border: 0px;
 }
