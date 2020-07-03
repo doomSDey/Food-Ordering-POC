@@ -46,6 +46,10 @@ body, html {
 }
 
 .logo{
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  height: 25vw;
 }
 
 .tag{
