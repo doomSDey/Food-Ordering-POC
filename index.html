@@ -68,8 +68,8 @@
             <form class="animate" action="/action_page.php">
               <div class="container">
                 <div class="row-2">
-                  <label for="uname" style="margin-top:2vw;color:black;"><b>Email</b></label>
-                  <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="uname" required>
+                  <label for="email" style="margin-top:2vw;color:black;"><b>Email</b></label>
+                  <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="email" required>
                 </div>
                 <div class="row-2">
                   <label for="psw" style="color:black;"><b>Password</b></label>
@@ -90,37 +90,75 @@
     </div>
 
     <!-- Modal Sign Up -->
-    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade gen" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header gen">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 
             </button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
 
           </div>
-          <div class="modal-body">
+          <div class="modal-body gen">
             <div role="tabpanel">
               <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Upload</a>
+                <li role="presentation" class="nav-item"><a class="nav-link active" href="#foodies" aria-controls="foodies" role="tab" data-toggle="tab">Foodies</a>
 
                 </li>
-                <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Browse</a>
+                <li role="presentation" class="nav-item"><a class="nav-link" href="#resturants" aria-controls="resturants" role="tab" data-toggle="tab">Resturants</a>
 
                 </li>
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="uploadTab">upload Tab</div>
-                <div role="tabpanel" class="tab-pane" id="browseTab">browseTab</div>
+                <div role="tabpanel" class="tab-pane active" id="foodies">
+                  <form class="animate" action="/action_page.php">
+                    <div class="container">
+                      <div class="row-2">
+                        <label for="name" style="margin-top:2vw;color:black;"><b>Name</b></label>
+                        <input type="name" class="col-12 txtfeild" placeholder="Enter Name" name="uname" required>
+                      </div>
+                      <div class="row-2">
+                        <label for="email" style="color:black;"><b>Email</b></label>
+                        <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="email" required>
+                      </div>
+                      <div class="row-2">
+                        <label for="psw" style="color:black;"><b>Password</b></label>
+                        <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                      </div>
+                      <label>
+                        <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Veg
+                      </label>
+                      <div class="row-2">
+                        <button class="btn col btn3" type="submit">Sign Up</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="resturants">
+                  <form class="animate" action="/action_page.php">
+                    <div class="container">
+                      <div class="row-2">
+                        <label for="name" style="margin-top:2vw;color:black;"><b>Resturant Name</b></label>
+                        <input type="name" class="col-12 txtfeild" placeholder="Enter Name" name="uname" required>
+                      </div>
+                      <div class="row-2">
+                        <label for="email" style="color:black;"><b>Email</b></label>
+                        <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="email" required>
+                      </div>
+                      <div class="row-2">
+                        <label for="psw" style="color:black;"><b>Password</b></label>
+                        <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                      </div>
+                      <div class="row-2">
+                        <button class="btn col btn3" type="submit">Sign Up</button>
+                      </div>
+                    </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary save">Save changes</button>
           </div>
         </div>
       </div>
