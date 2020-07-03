@@ -91,6 +91,17 @@ body, html {
   overflow-x: hidden;
 }
 
+.btn3{
+  color:black;
+  margin-top:1vw;
+  border-color: grey;
+  margin-bottom:2vw;
+}
+
+.btn3:hover{
+  border-color: black;
+}
+
 .btn2{
   align-items: center;
   border-radius: 25px;
@@ -112,49 +123,28 @@ body, html {
 /*modal-header*/
 .modal-header{
   border: 0px;
-  color: white;
-  margin-bottom: -4vw;
-  margin-left: 1.5vw;
+  color: black;
+  margin-left: 1vw;
 }
-
-/* The Modal (background) */
-
-/* Modal Content Box */
-.modal-content {
-  background-color: #2B2D2F;
-  margin: 22% auto; /* 15% from the top and centered */
-  margin-bottom: 10%;
-  width: 90%; /* Could be more or less, depending on screen size */
-  height: auto;
-  border-radius: 25px;
-
-}
-
-@media screen and (max-width: 540px) {
-  .modal-header{
-    border: 0px;
-    color: white;
-    margin-bottom: -45vw;
-    margin-left: 1.5vw;
-  }
-    .modal-content {
-      margin: 55% auto; /* 15% from the top and centered */
-      margin-bottom: 5%;
-
-    }
-}
-
 
 /* The Close Button */
 .close {
   /* Position it in the top right corner outside of the modal */
   position: absolute;
   right: 25px;
-  top: 0;
-  color: white;
+  top: 1vw;
+  color: black;
   font-size: 35px;
   font-weight: bold;
   outline: none;
+}
+
+.model-dialog{
+  height: 300px;
+}
+
+.modal-content{
+  border-radius: 25px;
 }
 
 /* Close button on hover */
@@ -168,9 +158,21 @@ body, html {
 .txtfeild{
   border-radius: 25px;
   outline: none;
-  border-color: white;
-  border:none;
+  background-color: #dbdbdb;
+  border:3px;
   margin-bottom: 1vw;
+}
+
+.nav-tabs{
+  padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 20px;
+    border: 1px solid transparent;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    display: block;
+
 }
 
 /* Add Zoom Animation */

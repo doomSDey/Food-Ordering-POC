@@ -52,83 +52,77 @@
     </div>
 
 
-    <!-- Modal Sign In -->
-    <div id="signin" class="modal fade" role="dialog">
-      <div class="modal-dialog">
 
-        <!-- Modal content-->
+
+    <!-- Modal Sign In-->
+    <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Sign In</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <form class="modal-content animate" action="/action_page.php">
-            <div class="container">
-              <div class="row-2">
-                <label for="uname" style="margin-top:2vw;color:white;"><b>Email</b></label>
-                <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="uname" required>
-              </div>
-              <div class="row-2">
-                <label for="psw" style="color:white;"><b>Password</b></label>
-                <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
-              </div>
-              <label>
-                <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Remember me
-              </label>
-              <div class="row-2">
-                <button class="btn col" style="margin-top:1vw;margin-bottom:2vw;" type="submit">Login</button>
-              </div>
-            </div>
-          </form>
-        </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Sign In</h4>
 
+          </div>
+          <div class="modal-body">
+            <form class="animate" action="/action_page.php">
+              <div class="container">
+                <div class="row-2">
+                  <label for="uname" style="margin-top:2vw;color:black;"><b>Email</b></label>
+                  <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="uname" required>
+                </div>
+                <div class="row-2">
+                  <label for="psw" style="color:black;"><b>Password</b></label>
+                  <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                </div>
+                <label>
+                  <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Remember me
+                </label>
+                <div class="row-2">
+                  <button class="btn col btn3" type="submit">Login</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
       </div>
     </div>
 
     <!-- Modal Sign Up -->
-    <div id="signup" class="modal fade" role="dialog">
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
-          <div class=" modal-header">
-            <h4 class="modal-title">Sign Up</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+
           </div>
-          <ul class="nav nav-tabs" id="tabContent">
-            <li class="active"><a href="#customer" data-toggle="tab">Foodies</a></li>
-            <li><a href="#resturants" data-toggle="tab">Resturants</a></li>
-          </ul>
+          <div class="modal-body">
+            <div role="tabpanel">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Upload</a>
 
-          <div class="tab-content">
-            <div class="tab-pane active" id="customer">
+                </li>
+                <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Browse</a>
 
-              <form class="modal-content animate" action="/action_page.php">
-                <div class="container">
-                  <div class="row-2">
-                    <label for="uname" style="margin-top:2vw;color:white;"><b>Email</b></label>
-                    <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="uname" required>
-                  </div>
-                  <div class="row-2">
-                    <label for="psw" style="color:white;"><b>Password</b></label>
-                    <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
-                  </div>
-                  <label>
-                    <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Remember me
-                  </label>
-                  <div class="row-2">
-                    <button class="btn col" style="margin-top:1vw;margin-bottom:2vw;" type="submit">Login</button>
-                  </div>
-                </div>
-              </form>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="uploadTab">upload Tab</div>
+                <div role="tabpanel" class="tab-pane" id="browseTab">browseTab</div>
+              </div>
             </div>
-
-            <div class="tab-pane" id="resturants">
-            </div>
-
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary save">Save changes</button>
           </div>
         </div>
-
       </div>
     </div>
 
