@@ -23,25 +23,23 @@ session_start();
   </head>
 
   <body class="bg">
-    <div class="container">
-      <div class="row hd">
-        Welcome <?php
-         echo $_SESSION["email"]; ?><br>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" >
+    <a href="#" class="navbar-brand">conFUSION</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- Trigger the modal with a button -->
+    <div class="collapse navbar-collapse  text-right " id="navbarCollapse">
 
-
-          <div id="loginbutton"></div>
-        <div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
-          <h3 class="signin" data-toggle="modal" data-target="#signUp">Sign Up</h3>
+            <a data-target="#signup" data-toggle="modal"  id="MainNavHelp"
+       href="#signup" class="nav-item nav-link" style="color:white;">Sign Up</a>
+            <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
+       href="#signin" class="nav-item nav-link" style="color:white;">Sign In</a>
+            <a href="#" class="nav-item nav-link" style="color:white;">Logout</a>
         </div>
-
-        <div class="col-xs-2">
-          <h3 class="signin" data-toggle="modal" data-target="#signin">Sign In</h3>
-        </div>
-
-      </div>
     </div>
+  </nav>
+
     <div class="container">
       <div class="row logo">
         <h1 class="col cname">conFUSION</h1>

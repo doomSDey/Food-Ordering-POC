@@ -23,6 +23,10 @@ body, html {
 
 }
 
+.hd{
+  height: 50%;
+  width: 80%;
+}
 .logo{
   color: white;
   font-family: Helvetica, sans-serif;
