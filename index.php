@@ -36,8 +36,14 @@ session_start();
         <div class="col-xs-2">
           <h3 class="signin" data-toggle="modal" data-target="#signin">Sign In</h1>
         </div>
-        <?php }
-        ?>
+        <?php }else {  ?>
+          <div id="loginbutton"></div>
+        <div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
+          <h3 class="signin" data-toggle="modal" data-target="#signUp">Log Out</h1>
+        </div>
+<?php
+  }
+    ?>
       </div>
     </div>
     <div class="container">
