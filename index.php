@@ -138,7 +138,7 @@
                   </form>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="resturants">
-                  <form class="animate" action="registration.php" method="post">
+                  <form class="animate" action="scripts/restaurants_register.php" method="post">
                       <div class="row-2">
                         <label for="name" style="margin-top:2vw;color:black;"><b>Resturant Name</b></label>
                         <input type="name" class="col-12 txtfeild " placeholder="Enter Name" name="uname" required>

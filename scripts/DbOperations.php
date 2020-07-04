@@ -2,11 +2,11 @@
 
 class DbOperations{
 
-	private $con;
+		private $con;
 
-	function __construct(){
+		function __construct(){
 
-		require_once dirname(__FILE__).'/DbConnect.php';
+		include_once 'DbConnect.php';
 
 		$db = new DbConnect();
 
@@ -14,13 +14,28 @@ class DbOperations{
 
 	}
 
+	public function createUser($uname, $psw, $email){
+		if($this->isUserExist($email)){
+			return 0;
+		}else{
+			$password = md5($psw);
+			$stmt = $this->con->prepare("INSERT INTO `restaurants` (`name`, `password`, `email`) VALUES (?, ?, ?);");
+			$stmt->bind_param("sss",$uname,$psw,$email);
 
-	private function isUserExist($username, $email){
-	$stmt = $this->con->prepare("SELECT id FROM users WHERE regdNo = ? OR email = ?");
-	$stmt->bind_param("ss", $username, $email);
-	$stmt->execute();
-	$stmt->store_result();
-	return $stmt->num_rows > 0;
-}
+			if($stmt->execute()){
+				return 1;
+			}else{
+				return 2;
+			}
+		}
+	}
+
+	public function isUserExist($email){
+		$stmt = $this->con->prepare("SELECT `email` FROM `restaurants` WHERE `email` = ?");
+		$stmt->bind_param("s",  $email);
+		$stmt->execute();
+		$stmt->store_result();
+		return $stmt->num_rows>0;
+	}
 
 }
