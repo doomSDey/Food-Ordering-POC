@@ -114,7 +114,7 @@
               <!-- Tab panes -->
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="foodies">
-                  <form class="animate" action="/action_page.php">
+                  <form class="animate" action="scripts/foodies_register.php" method="post">
                     <div class="container">
                       <div class="row-2">
                         <label for="name" style="margin-top:2vw;color:black;"><b>Name</b></label>
@@ -129,7 +129,7 @@
                         <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
                       </div>
                       <label>
-                        <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Veg
+                        <input type="checkbox" checked="checked" style="font-color:white;" name="isveg" value="veg"> Veg
                       </label>
                       <div class="row-2">
                         <button class="btn col btn3" type="submit">Sign Up</button>

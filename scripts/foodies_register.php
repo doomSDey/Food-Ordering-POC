@@ -13,11 +13,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		//operate the data further
 
 		   $db = new DbOperations();
+			 $isveg;
+			 if(isset($_POST['isveg'])){
+				 $isveg=1;
+			 }else{
+				 $isveg=0;
+			 }
 
-		   $result = $db->createResturantUser( $_POST['uname'],
+		   $result = $db->createFoodietUser( $_POST['uname'],
 									$_POST['psw'],
-									$_POST['email']
-								        );
+									$_POST['email'],
+									$isveg );
+									
   		if($result == 1){
   			$response['error'] = false;
   			$response['message'] = "User registered successfully";
