@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css" rel="stylesheet">
 
     <title>Con Fusion</title>
 
@@ -65,7 +65,7 @@
 
           </div>
           <div class="modal-body">
-            <form class="animate" action="/action_page.php">
+            <form class="animate" action="#">
               <div class="container">
                 <div class="row-2">
                   <label for="email" style="margin-top:2vw;color:black;"><b>Email</b></label>
@@ -90,7 +90,7 @@
     </div>
 
     <!-- Modal Sign Up -->
-    <div class="modal fade gen" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header gen">
@@ -138,11 +138,10 @@
                   </form>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="resturants">
-                  <form class="animate" action="/action_page.php">
-                    <div class="container">
+                  <form class="animate" action="registration.php" method="post">
                       <div class="row-2">
                         <label for="name" style="margin-top:2vw;color:black;"><b>Resturant Name</b></label>
-                        <input type="name" class="col-12 txtfeild" placeholder="Enter Name" name="uname" required>
+                        <input type="name" class="col-12 txtfeild " placeholder="Enter Name" name="uname" required>
                       </div>
                       <div class="row-2">
                         <label for="email" style="color:black;"><b>Email</b></label>
@@ -154,8 +153,8 @@
                       </div>
                       <div class="row-2">
                         <button class="btn col btn3" type="submit">Sign Up</button>
-                      </div>
                     </div>
+                  </form>
                 </div>
               </div>
             </div>
