@@ -1,6 +1,8 @@
 
 <?php
 
+session_start();
+
 require_once 'DbOperations.php';
 
 $response = array();
@@ -21,8 +23,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   		if($result == 1){
   			$response['error'] = false;
   			$response['message'] = "User registered successfully";
-				$_SESSION["name"] = "$uname";
-				$_SESSION["email"] = "$email";
+				$_SESSION["name"] = $_POST['uname'];
+				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "restaurants";
   		}elseif($result == 2){
   			$response['error'] = true;

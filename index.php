@@ -1,5 +1,6 @@
 <? php
 session_start();
+
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -24,18 +25,19 @@ session_start();
   <body class="bg">
     <div class="container">
       <div class="row hd">
-        Welcome <?php echo $_SESSION["email"]; ?><br>
+        Welcome <?php
+         echo $_SESSION["email"]; ?><br>
 
         <!-- Trigger the modal with a button -->
 
 
           <div id="loginbutton"></div>
         <div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
-          <h3 class="signin" data-toggle="modal" data-target="#signUp">Sign Up</h1>
+          <h3 class="signin" data-toggle="modal" data-target="#signUp">Sign Up</h3>
         </div>
 
         <div class="col-xs-2">
-          <h3 class="signin" data-toggle="modal" data-target="#signin">Sign In</h1>
+          <h3 class="signin" data-toggle="modal" data-target="#signin">Sign In</h3>
         </div>
 
       </div>
@@ -55,7 +57,7 @@ session_start();
       </div>
 
       <div class="row">
-        <button class="col-2 btn btn2" type="button" name="button">Explore Menu</button>
+        <a class="col-2 btn btn2"  href="Menu.php" >Explore Menu</a>
       </div>
     </div>
 
