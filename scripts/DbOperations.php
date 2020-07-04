@@ -61,4 +61,26 @@ class DbOperations{
 		return $stmt->num_rows>0;
 	}
 
+	public function userLogin($email,$psw){
+		$password = md5($pass);
+		$stmt = $this->con->prepare("SELECT email FROM `restaurants` WHERE email = ? AND password = ?");
+		$stmt->bind_param("ss",$username,$password);
+		$stmt->execute();
+		$stmt->store_result();
+		if( $stmt->num_rows == 0){
+			$stmt = $this->con->prepare("SELECT email FROM `foodies` WHERE email = ? AND password = ?");
+			$stmt->bind_param("ss",$username,$password);
+			$stmt->execute();
+			$stmt->store_result();
+			if($stmt->num_rows>0)
+				return 2;
+			else {
+				return 0;
+			}
+		}
+		else{
+			return 1;
+		}
+	}
+
 }
