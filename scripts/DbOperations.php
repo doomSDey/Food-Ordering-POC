@@ -30,6 +30,7 @@ class DbOperations{
 		}
 	}
 
+
 	public function createFoodietUser($uname, $psw, $email,$isveg){
 		if($this->isUserExistFoodie($email)){
 			return 0;
@@ -62,16 +63,18 @@ class DbOperations{
 	}
 
 	public function userLogin($email,$psw){
-		$password = md5($pass);
+		$password = md5($psw);
 		$stmt = $this->con->prepare("SELECT email FROM `restaurants` WHERE email = ? AND password = ?");
-		$stmt->bind_param("ss",$username,$password);
+		$stmt->bind_param("ss",$email,$password);
 		$stmt->execute();
 		$stmt->store_result();
-		if( $stmt->num_rows == 0){
+		if( $stmt->num_rows <=0){
 			$stmt = $this->con->prepare("SELECT email FROM `foodies` WHERE email = ? AND password = ?");
-			$stmt->bind_param("ss",$username,$password);
+			$stmt->bind_param("ss",$email,$password);
 			$stmt->execute();
 			$stmt->store_result();
+			echo $stmt->num_rows;
+
 			if($stmt->num_rows>0)
 				return 2;
 			else {
@@ -81,6 +84,12 @@ class DbOperations{
 		else{
 			return 1;
 		}
+	}
+
+	public function logout(){
+		session_start();
+		session_unset();
+		session_destroy();
 	}
 
 }

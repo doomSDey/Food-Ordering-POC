@@ -22,12 +22,13 @@ session_start();
   </head>
 
   <body class="bg">
-
     <div class="container">
       <div class="row hd">
+        Welcome <?php echo $_SESSION["email"]; ?><br>
+
         <!-- Trigger the modal with a button -->
-        <?php
-        if (isset($_SESSION['email']) || !empty($_SESSION['email'])){  ?>
+
+
           <div id="loginbutton"></div>
         <div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
           <h3 class="signin" data-toggle="modal" data-target="#signUp">Sign Up</h1>
@@ -36,14 +37,7 @@ session_start();
         <div class="col-xs-2">
           <h3 class="signin" data-toggle="modal" data-target="#signin">Sign In</h1>
         </div>
-        <?php }else {  ?>
-          <div id="loginbutton"></div>
-        <div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
-          <h3 class="signin" data-toggle="modal" data-target="#signUp">Log Out</h1>
-        </div>
-<?php
-  }
-    ?>
+
       </div>
     </div>
     <div class="container">
@@ -79,7 +73,7 @@ session_start();
 
           </div>
           <div class="modal-body">
-            <form class="animate" action="#">
+            <form class="animate" action="scripts/login.php" method="post">
               <div class="container">
                 <div class="row-2">
                   <label for="email" style="margin-top:2vw;color:black;"><b>Email</b></label>
