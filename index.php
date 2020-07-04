@@ -152,7 +152,7 @@
                         <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
                       </div>
                       <div class="row-2">
-                        <button class="btn col btn3" type="submit">Sign Up</button>
+                        <button class="btn col btn3" name="submit" type="submit">Sign Up</button>
                     </div>
                   </form>
                 </div>
