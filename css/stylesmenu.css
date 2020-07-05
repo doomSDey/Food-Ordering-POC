@@ -1,0 +1,58 @@
+.head{
+  display: flex;
+  align-items: center
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../img/menu.jpeg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    background-attachment: fixed;
+
+}
+
+.hd{
+  height: 50%;
+  width: 80%;
+}
+.logo{
+  color: white;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.search{
+  height: 2vw;
+  border-radius: 25px;
+}
+
+
+.btn{
+  border-radius: 25px;
+  border-color: white;
+  color: blue;
+
+  height: 2vw;
+  vertical-align:middle;
+  width: 6vw;
+  font-size: 10px;
+
+  overflow-x: hidden;
+  font-size-adjust: 0.58;
+}
+
+.btn:hover{
+  color: white;
+}

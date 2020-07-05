@@ -3,10 +3,6 @@ body, html {
   margin: 0;
 }
 
-.row{
-    margin-left: -8vw;
-    margin-right: -8vw;
-}
 
 .bg {
   /* The image used */
@@ -22,20 +18,26 @@ body, html {
 }
 
 .signin {
-  font-size: 1.5vw;
-  font-family: Helvetica, sans-serif;
-  font-weight:lighter;
+
   color: white;
-  text-align: right;
   transition: transform .4s; /* Animation */
-  margin-top: 25px;
-  margin-left: 50px;
-  font-size-adjust: 1;
+
 }
 
-.hd{
-  margin-left:
+.right {
+  float: right;
+  justify-content: flex-end;
+  color: white;
 }
+
+.alert{
+  height: 10px;
+  font-size: 0.5vw;
+  line-height: 0.25vw;
+  margin: auto;
+  align-items: center;
+}
+
 
 .signin:hover{
   cursor: pointer;
@@ -78,9 +80,7 @@ body, html {
 
 .search{
   border-radius: 25px;
-  margin:auto;
   margin-top: 4vw;
-
   text-align: left;
   align-items: center;
   border: 0;
@@ -91,15 +91,53 @@ body, html {
   overflow-x: hidden;
 }
 
+.btn5{
+  margin-right: 10px;
+  margin-top: 10px;
+  color:white;
+  border-color: grey;
+}
+
+.btn5:hover{
+  color: white;
+  border-color: white;
+}
+
+.btn4{
+  color:black;
+  border-color: grey;
+}
+
+.btn4:hover{
+  border-color: black;
+}
+
+.btn3{
+  color:black;
+  margin-top:1vw;
+  border-color: grey;
+  margin-bottom:2vw;
+}
+
+.btn3:hover{
+  border-color: black;
+}
+
 .btn2{
   align-items: center;
   border-radius: 25px;
-  height: 7vw;
   text-align: center;
   vertical-align:middle;
   margin: auto;
   font-size: 2vw;
   margin-top: 4vw;
+  border-color: grey;
+
+}
+
+.btn2:hover{
+  color: white;
+  border-color: white;
 }
 
 .btn1{
@@ -107,54 +145,40 @@ body, html {
   margin-right: 14vw;
   margin-top: 4vw;
   align-items: flex-start;
+  border-color: grey;
+
+}
+
+.btn1:hover{
+  color: white;
+  border-color: white;
 }
 
 /*modal-header*/
 .modal-header{
   border: 0px;
-  color: white;
-  margin-bottom: -4vw;
-  margin-left: 1.5vw;
+  color: black;
+  margin-left: 1vw;
 }
-
-/* The Modal (background) */
-
-/* Modal Content Box */
-.modal-content {
-  background-color: #2B2D2F;
-  margin: 22% auto; /* 15% from the top and centered */
-  margin-bottom: 10%;
-  width: 90%; /* Could be more or less, depending on screen size */
-  height: auto;
-  border-radius: 25px;
-
-}
-
-@media screen and (max-width: 540px) {
-  .modal-header{
-    border: 0px;
-    color: white;
-    margin-bottom: -45vw;
-    margin-left: 1.5vw;
-  }
-    .modal-content {
-      margin: 55% auto; /* 15% from the top and centered */
-      margin-bottom: 5%;
-
-    }
-}
-
 
 /* The Close Button */
 .close {
   /* Position it in the top right corner outside of the modal */
   position: absolute;
   right: 25px;
-  top: 0;
-  color: white;
+  top: 1vw;
+  color: black;
   font-size: 35px;
   font-weight: bold;
   outline: none;
+}
+
+.model-dialog{
+  height: 300px;
+}
+
+.modal-content{
+  border-radius: 25px;
 }
 
 /* Close button on hover */
@@ -168,11 +192,14 @@ body, html {
 .txtfeild{
   border-radius: 25px;
   outline: none;
-  border-color: white;
-  border:none;
+  background-color: #dbdbdb;
+  border:3px;
   margin-bottom: 1vw;
 }
 
+.gen{
+  font-family: Helvetica, sans-serif;
+}
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;

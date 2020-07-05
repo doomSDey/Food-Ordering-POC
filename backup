@@ -1,0 +1,36 @@
+<?php
+if (isset($_SESSION['email']) || !empty($_SESSION['email'])){  ?>
+  <div id="loginbutton"></div>
+<div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
+  <h3 class="signin" data-toggle="modal" data-target="#signUp">Sign Up</h1>
+</div>
+
+<div class="col-xs-2">
+  <h3 class="signin" data-toggle="modal" data-target="#signin">Sign In</h1>
+</div>
+<?php }else {  ?>
+
+  <div id="loginbutton"></div>
+<div class="offset-md-9 offset-sm-8 offset-xs-4 col-xs-2 ">
+  <h1  class="signin"> <a href="scripts/logout.php">Log Out</h1>
+</div>
+<?php
+}
+?>
+
+
+echo'
+<div class= "container">
+    <div class = "row" >
+      <form>
+        <div class="card">
+          <h6 class = "card-title">$dt[dish_name]</h6>
+        </div>
+        <div class="card-body">
+        <img class="img-fluid" src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"/>
+        </div>
+      </form>
+    </div>
+
+</div>
+';
