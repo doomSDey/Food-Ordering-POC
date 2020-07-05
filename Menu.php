@@ -23,7 +23,7 @@ session_start();
 
   <body class="bg">
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
     <a href="#" class="navbar-brand">conFUSION</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -53,25 +53,18 @@ session_start();
   //  print_r($res);
     $data = $res->get_result();
     while ($dt = $data->fetch_assoc())
-{
-    //$items[] = $dt;
-  //  print_r($items);
-    echo'
-    <div class= "container">
-        <div class = "row" >
-          <form>
-            <div class="card">
-              <h6 class = "card-title">'$dt['dish_name']'</h6>
-            </div>
-            <div class="card-body">
-            <img class="img-fluid" src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"/>
-            </div>
-          </form>
+{ ?>
+    <div class="row">
+      <form>
+        <div class="card col-8">
+          <h6 class="card-title"> <?php echo $dt['dish_name']; ?> </div>
+          <div class="card-body">
+
+          </div>
         </div>
-
+      </form>
     </div>
-    ';
-
+<?php
 }
   ?>
 </div>

@@ -33,6 +33,11 @@ body, html {
   font-size-adjust: 1;
 }
 
+.right {
+  float: right;
+  justify-content: flex-end;
+  color: white;
+}
 
 .signin:hover{
   cursor: pointer;
