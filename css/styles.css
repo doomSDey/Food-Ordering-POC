@@ -3,10 +3,6 @@ body, html {
   margin: 0;
 }
 
-.row{
-    margin-left: -8vw;
-    margin-right: -8vw;
-}
 
 .bg {
   /* The image used */
@@ -22,15 +18,10 @@ body, html {
 }
 
 .signin {
-  font-size: 1.5vw;
-  font-family: Helvetica, sans-serif;
-  font-weight:lighter;
+
   color: white;
-  text-align: right;
   transition: transform .4s; /* Animation */
-  margin-top: 25px;
-  margin-left: 50px;
-  font-size-adjust: 1;
+
 }
 
 .right {
@@ -38,6 +29,15 @@ body, html {
   justify-content: flex-end;
   color: white;
 }
+
+.alert{
+  height: 10px;
+  font-size: 0.5vw;
+  line-height: 0.25vw;
+  margin: auto;
+  align-items: center;
+}
+
 
 .signin:hover{
   cursor: pointer;
@@ -81,7 +81,6 @@ body, html {
 .search{
   border-radius: 25px;
   margin-top: 4vw;
-
   text-align: left;
   align-items: center;
   border: 0;
@@ -90,6 +89,27 @@ body, html {
   outline : none;
   vertical-align:middle;
   overflow-x: hidden;
+}
+
+.btn5{
+  margin-right: 10px;
+  margin-top: 10px;
+  color:white;
+  border-color: grey;
+}
+
+.btn5:hover{
+  color: white;
+  border-color: white;
+}
+
+.btn4{
+  color:black;
+  border-color: grey;
+}
+
+.btn4:hover{
+  border-color: black;
 }
 
 .btn3{
@@ -111,6 +131,13 @@ body, html {
   margin: auto;
   font-size: 2vw;
   margin-top: 4vw;
+  border-color: grey;
+
+}
+
+.btn2:hover{
+  color: white;
+  border-color: white;
 }
 
 .btn1{
@@ -118,6 +145,13 @@ body, html {
   margin-right: 14vw;
   margin-top: 4vw;
   align-items: flex-start;
+  border-color: grey;
+
+}
+
+.btn1:hover{
+  color: white;
+  border-color: white;
 }
 
 /*modal-header*/

@@ -1,10 +1,9 @@
-<? php
+<?php
 session_start();
 
 ?>
 <DOCTYPE html>
   <html lang="en">
-
   <head>
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
@@ -23,21 +22,48 @@ session_start();
   </head>
 
   <body class="bg">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" >
+
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="padding-right:0" >
+
     <a href="#" class="navbar-brand">conFUSION</a>
+
+    <div class="row">
+      <div class="col" style="margin-left:35vw;"><?php
+    error_reporting(0);
+
+    if ($_GET['msg'])
+    {
+      echo '<div class="alert alert-success alert ">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+    }
+
+    ?>
+    </div>
+    </div>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse  text-right " id="navbarCollapse">
+    <div class="collapse navbar-collapse  mr-auto " style="justify-content: flex-end;" id="navbarCollapse">
 
-            <a data-target="#signup" data-toggle="modal"  id="MainNavHelp"
-       href="#signup" class="nav-item nav-link" style="color:white;">Sign Up</a>
-            <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
-       href="#signin" class="nav-item nav-link" style="color:white;">Sign In</a>
-            <a href="#" class="nav-item nav-link" style="color:white;">Logout</a>
+      <div class="navbar-nav text-right">
+          <?php
+            if(!$_SESSION['email']){ ?>
+              <a  data-target="#signup" data-toggle="modal"  id="MainNavHelp"
+         href="#signup" class="nav-item nav-link" style="color:white;transition: transform .4s;">Sign Up</a>
+              <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
+         href="#signin" class="nav-item nav-link" style="color:white; transition: transform .4s;">Sign In</a>
+         <?php
+            }
+            else{
+          ?>
+          <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
+
+            <?php
+          }
+          ?>
+          </div>
         </div>
-    </div>
   </nav>
 
     <div class="container">
@@ -174,6 +200,17 @@ session_start();
     </div>
 
 
+<div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+      <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
+      <div class="modal-footer"><a href="scripts/logout.php" class="btn btn-block btn4">Logout</a></div>
+    </div>
+  </div>
+</div>
+
+
     <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.bundle.js" type="text/javascript"></script>
     <script>
@@ -187,6 +224,15 @@ session_start();
         }
       }
     </script>
+
+    <script>
+    //disappearing alert after 2 sec
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 2000);
+</script>
 
   </body>
 

@@ -1,4 +1,4 @@
-<? php
+<?php
 session_start();
 
 ?>
@@ -24,7 +24,7 @@ session_start();
   <body class="bg">
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
-    <a href="#" class="navbar-brand">conFUSION</a>
+    <a href="index.php" class="navbar-brand">conFUSION</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -47,11 +47,13 @@ session_start();
 <div class="container" style="color:white;    padding-top: 65px; ">
   <div class="row" style="margin:30px;">
 
+
   <?php
     require_once 'scripts/DbOperations.php';
 
     $db = new DbOperations();
-    $res=$db->menudatares();
+    session_start();
+    $res=$db->menudatares($_SESSION['email']);
   //  print_r($res);
     $data = $res->get_result();
     while ($dt = $data->fetch_assoc())
@@ -80,11 +82,20 @@ session_start();
         </div>
       </div>
     </form>
-
     </div>
 <?php
 }
   ?>
+  <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
+  <form>
+      <div class="card  bg-dark " style="height:550px;" >
+
+          <div class="card-body">
+            <a data-target="#addItems" data-toggle="modal" >Add Items</a>          </div>
+      </div>
+    </form>
+
+    </div>
 </div>
 
     <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
