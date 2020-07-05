@@ -61,10 +61,7 @@ session_start();
   <div class="row" style="margin:30px;">
 
   <?php
-  if(!$_SESSION['email'])
-  {
-    header('Location: http://localhost/skel/index.php?msg=' . urlencode(base64_encode("Not authorized")));
-  }
+
     require_once 'scripts/DbOperations.php';
 
     $db = new DbOperations();

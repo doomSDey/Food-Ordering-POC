@@ -100,7 +100,7 @@ class DbOperations{
 	}
 
 	public function searchmenu($dish_name){
-		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE dish_name = ?");
+		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE dish_name REGEXP ?");
 		$stmt->bind_param("s",$dish_name);
 		$stmt->execute();
 		return $stmt;

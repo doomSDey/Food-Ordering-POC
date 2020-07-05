@@ -85,10 +85,11 @@ session_start();
   ?>
   <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
   <form>
-      <div class="card  bg-dark " style="height:550px;" >
-
-          <div class="card-body">
-            <a data-target="#addItems" data-toggle="modal" >Add Items</a>          </div>
+      <div class="card  bg-dark " style="height:550px; max-width:230px;" >
+          <div class="card-body" >
+            <a data-target="#addItems" data-toggle="modal"  >Add Items</a>
+            <img class="img-fluid "  width="200" height="100"  style="margin-top:10px"src ="img/Add.png" />
+          </div>
       </div>
     </form>
 
