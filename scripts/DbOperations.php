@@ -86,6 +86,12 @@ class DbOperations{
 		}
 	}
 
+	public function menudata(){
+		$stmt = $this->con->prepare("SELECT * FROM `menu` ");
+		$stmt->execute();
+		return $stmt;
+	}
+
 	public function logout(){
 		session_start();
 		session_unset();
