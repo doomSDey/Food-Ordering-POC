@@ -24,7 +24,7 @@ session_start();
   <body class="bg">
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
-    <a href="#" class="navbar-brand">conFUSION</a>
+    <a href="index.php" class="navbar-brand">conFUSION</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
