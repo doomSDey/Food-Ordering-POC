@@ -31,8 +31,8 @@ session_start();
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
 
-        <form class="form-inline ml-auto " action="MenuOnSearch.php" method="post">
-            <input type="text" class="form-control mr-sm-2" name="search" placeholder="Search">
+        <form class="form-inline ml-auto ">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search">
             <button type="submit" class="btn btn-outline-light" style="  justify-content: flex-end;" >Search</button>
         </form>
         <div class="navbar-nav text-right">
@@ -51,7 +51,7 @@ session_start();
     require_once 'scripts/DbOperations.php';
 
     $db = new DbOperations();
-    $res=$db->menudata();
+    $res=$db->menudatares();
   //  print_r($res);
     $data = $res->get_result();
     while ($dt = $data->fetch_assoc())

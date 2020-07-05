@@ -50,8 +50,10 @@ session_start();
       </div>
 
       <div class="row ">
-        <input class=" offset-3 col-7 search" type="text" placeholder="Search..">
-        <button class="col-1 btn btn1" type="button" name="button"> Go </button>
+        <form class="offset-2 col-12" action="MenuOnSearch.php" method="post" >
+        <input class="  search" style="width:60%" type="text" name="search" placeholder="    Search..">
+        <button class="col-1 btn btn1" type="submit" name="button"> Go </button>
+        </form>
       </div>
 
       <div class="row">

@@ -92,6 +92,20 @@ class DbOperations{
 		return $stmt;
 	}
 
+	public function menudatares($email){
+		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE email = ?");
+		$stmt->bind_param("s",$email);
+		$stmt->execute();
+		return $stmt;
+	}
+
+	public function searchmenu($dish_name){
+		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE dish_name = ?");
+		$stmt->bind_param("s",$dish_name);
+		$stmt->execute();
+		return $stmt;
+	}
+
 	public function logout(){
 		session_start();
 		session_unset();

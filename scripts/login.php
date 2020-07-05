@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "foodies";
    		}else if($res == 1){
-        $addr='http://localhost/skel/index.php';
+        $addr='http://localhost/skel/ResturantHome.php';
 				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "restaurants";
       }

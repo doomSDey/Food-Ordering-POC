@@ -51,8 +51,7 @@ session_start();
     require_once 'scripts/DbOperations.php';
 
     $db = new DbOperations();
-    $res=$db->menudata();
-  //  print_r($res);
+    $res=$db->searchmenu($_POST['search']);
     $data = $res->get_result();
     while ($dt = $data->fetch_assoc())
 { ?>
