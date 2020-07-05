@@ -93,7 +93,7 @@ class DbOperations{
 	}
 
 	public function menudatares($email){
-		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE email = ?");
+		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE resturant_email = ?");
 		$stmt->bind_param("s",$email);
 		$stmt->execute();
 		return $stmt;
@@ -106,10 +106,5 @@ class DbOperations{
 		return $stmt;
 	}
 
-	public function logout(){
-		session_start();
-		session_unset();
-		session_destroy();
-	}
 
 }

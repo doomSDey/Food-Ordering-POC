@@ -1,6 +1,10 @@
 <?php
 session_start();
+  if(strcmp($_SESSION['type'],"restaurants")!=0)
+  {
 
+    header('Location: http://localhost/skel/index.php?msg=' . urlencode(base64_encode("Not authorized")));
+  }
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -52,7 +56,6 @@ session_start();
     require_once 'scripts/DbOperations.php';
 
     $db = new DbOperations();
-    session_start();
     $res=$db->menudatares($_SESSION['email']);
   //  print_r($res);
     $data = $res->get_result();
