@@ -45,6 +45,8 @@ session_start();
     </div>
 </nav>
 <div class="container" style="color:white;    padding-top: 65px; ">
+  <div class="row" style="margin:30px;">
+
   <?php
     require_once 'scripts/DbOperations.php';
 
@@ -54,15 +56,31 @@ session_start();
     $data = $res->get_result();
     while ($dt = $data->fetch_assoc())
 { ?>
-    <div class="row">
-      <form>
-        <div class="card col-8">
-          <h6 class="card-title"> <?php echo $dt['dish_name']; ?> </div>
-          <div class="card-body">
+  <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
+  <form>
+      <div class="card  bg-dark " style="height:550px;" >
 
-          </div>
+          <h6 class="card-title " style="margin:20px "> <?php echo $dt['dish_name']; ?> </h6>
+          <div class="card-body">
+            <img class="img-fluid "  width="200" height="100"
+            <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
+            <h6 style="margin-top:10px"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
+            <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
+            <h6 > <?php
+              if($dt['isveg'])
+                echo "Veg";
+              else
+                echo "Non-Veg";
+             ?>
+           </h6>
+           <h6> Offered by: <?php echo $dt['restaurant']; ?></h6>
+           <h6> Contact: <?php echo $dt['resturant_email']; ?> </h6>
+            <button type="submit" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>
+
         </div>
-      </form>
+      </div>
+    </form>
+
     </div>
 <?php
 }
