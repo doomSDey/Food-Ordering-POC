@@ -33,18 +33,12 @@ session_start();
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="collapse navbar-collapse" style="justify-content:flex-end;" id="navbarCollapse">
 
-        <form class="form-inline ml-auto ">
-            <input type="text" class="form-control mr-sm-2" placeholder="Search">
-            <button type="submit" class="btn btn-outline-light" style="  justify-content: flex-end;" >Search</button>
-        </form>
+
         <div class="navbar-nav text-right">
-            <a href="#" class="nav-item nav-link active">Cart</a>
-
-            <a href="#" class="nav-item nav-link">Sign Up</a>
-            <a href="#" class="nav-item nav-link">Sign In</a>
-            <a href="#" class="nav-item nav-link">Logout</a>
+            <a href="#" class="nav-item nav-link active">Orders</a>
+            <a href="scripts/logout.php" class="nav-item nav-link">Logout</a>
         </div>
     </div>
 </nav>
