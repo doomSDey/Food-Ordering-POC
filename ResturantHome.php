@@ -1,9 +1,7 @@
 <?php
 session_start();
-  if(strcmp($_SESSION['type'],"restaurants")!=0)
-  {
-
-    header('Location: http://localhost/skel/index.php?msg=' . urlencode(base64_encode("Not authorized")));
+  if (strcmp($_SESSION['type'], "restaurants")!=0) {
+      header('Location: http://localhost/skel/index.php?msg=' . urlencode(base64_encode("Not authorized")));
   }
 ?>
 <DOCTYPE html>
@@ -53,8 +51,7 @@ session_start();
     $res=$db->menudatares($_SESSION['email']);
   //  print_r($res);
     $data = $res->get_result();
-    while ($dt = $data->fetch_assoc())
-{ ?>
+    while ($dt = $data->fetch_assoc()) { ?>
   <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
   <form>
       <div class="card  bg-dark " style="height:550px;" >
@@ -66,10 +63,11 @@ session_start();
             <h6 style="margin-top:10px"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
             <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
             <h6 > <?php
-              if($dt['isveg'])
-                echo "Veg";
-              else
-                echo "Non-Veg";
+              if ($dt['isveg']) {
+                  echo "Veg";
+              } else {
+                  echo "Non-Veg";
+              }
              ?>
            </h6>
            <h6> Offered by: <?php echo $dt['restaurant']; ?></h6>

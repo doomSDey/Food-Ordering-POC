@@ -32,9 +32,8 @@ session_start();
       <div class="col" style="margin-left:35vw;"><?php
     error_reporting(0);
 
-    if ($_GET['msg'])
-    {
-      echo '<div class="alert alert-success alert ">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+    if ($_GET['msg']) {
+        echo '<div class="alert alert-success alert ">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
     }
 
     ?>
@@ -48,19 +47,18 @@ session_start();
 
       <div class="navbar-nav text-right">
           <?php
-            if(!$_SESSION['email']){ ?>
+            if (!$_SESSION['email']) { ?>
               <a  data-target="#signup" data-toggle="modal"  id="MainNavHelp"
          href="#signup" class="nav-item nav-link" style="color:white;transition: transform .4s;">Sign Up</a>
               <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
          href="#signin" class="nav-item nav-link" style="color:white; transition: transform .4s;">Sign In</a>
          <?php
-            }
-            else{
-          ?>
+            } else {
+                ?>
           <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
 
             <?php
-          }
+            }
           ?>
           </div>
         </div>

@@ -38,21 +38,19 @@ session_start();
         <div class="navbar-nav text-right">
           <?php
           error_reporting(0);
-            if(!$_SESSION['email']){ ?>
+            if (!$_SESSION['email']) { ?>
               <a  data-target="#signup" data-toggle="modal"  id="MainNavHelp"
          href="#signup" class="nav-item nav-link" style="color:white;">Sign Up</a>
               <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
          href="#signin" class="nav-item nav-link" style="color:white; ">Sign In</a>
          <?php
-            }
-            else{
-          ?>
-          <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
-          href="#signin" class="nav-item nav-link" style="color:white; >Cart</a>
+            } else {
+                ?>
+          <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"href="#signin" class="nav-item nav-link" style="color:white;">Cart</a>
           <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
 
             <?php
-          }
+            }
           ?>
         </div>
     </div>
@@ -67,8 +65,7 @@ session_start();
     $res=$db->menudata();
   //  print_r($res);
     $data = $res->get_result();
-    while ($dt = $data->fetch_assoc())
-{ ?>
+    while ($dt = $data->fetch_assoc()) { ?>
   <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
   <form>
       <div class="card  bg-dark " style="height:550px;" >
@@ -80,10 +77,11 @@ session_start();
             <h6 style="margin-top:10px"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
             <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
             <h6 > <?php
-              if($dt['isveg'])
-                echo "Veg";
-              else
-                echo "Non-Veg";
+              if ($dt['isveg']) {
+                  echo "Veg";
+              } else {
+                  echo "Non-Veg";
+              }
              ?>
            </h6>
            <h6> Offered by: <?php echo $dt['restaurant']; ?></h6>
