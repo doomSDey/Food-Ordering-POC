@@ -14,8 +14,8 @@ class DbOperations{
 
 	}
 
-	public function createResturantUser($uname, $psw, $email){
-		if($this->isUserExistResturant($email)){
+	public function createRestaurantUser($uname, $psw, $email){
+		if($this->isUserExistRestaurant($email)){
 			return 0;
 		}else{
 			$password = md5($psw);
@@ -54,7 +54,7 @@ class DbOperations{
 		$stmt->store_result();
 		return $stmt->num_rows>0;
 	}
-	public function isUserExistResturant($email){
+	public function isUserExistRestaurant($email){
 		$stmt = $this->con->prepare("SELECT `email` FROM `restaurants` WHERE `email` = ?");
 		$stmt->bind_param("s",  $email);
 		$stmt->execute();
@@ -93,7 +93,7 @@ class DbOperations{
 	}
 
 	public function menudatares($email){
-		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE resturant_email = ?");
+		$stmt = $this->con->prepare("SELECT * FROM `menu` WHERE restaurant_email = ?");
 		$stmt->bind_param("s",$email);
 		$stmt->execute();
 		return $stmt;
@@ -104,6 +104,23 @@ class DbOperations{
 		$stmt->bind_param("s",$dish_name);
 		$stmt->execute();
 		return $stmt;
+	}
+
+	public function getrestaurantname($email){
+		$stmt = $this->con->prepare("SELECT name FROM `restaurants` WHERE email = ?");
+		$stmt->bind_param("s",$email);
+		$stmt->execute();
+		return $stmt->get_result()->fetch_assoc();
+	}
+
+	public function addfood($dish_name,$price,$isveg,$image,$name,$email){
+		$stmt = $this->con->prepare("INSERT INTO `menu` (`dish_name`, `price`, `isveg`, `image`,'name','email') VALUES (?, ?, ?, ?, ?, ?);");
+		$stmt->bind_param("sdibss",$dish_name,$price,$isveg,$image,$name,$email);
+		if($stmt->execute()){
+			return 1;
+		}else{
+			return 2;
+		}
 	}
 
 

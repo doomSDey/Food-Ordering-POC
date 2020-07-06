@@ -35,8 +35,8 @@ session_start();
 
 
         <div class="navbar-nav text-right">
-            <a href="#" class="nav-item nav-link active">Orders</a>
-            <a href="scripts/logout.php" class="nav-item nav-link">Logout</a>
+            <a href="#" class=" btn btn5 nav-item nav-link active">Orders</a>
+          <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
         </div>
     </div>
 </nav>
@@ -71,7 +71,7 @@ session_start();
              ?>
            </h6>
            <h6> Offered by: <?php echo $dt['restaurant']; ?></h6>
-           <h6> Contact: <?php echo $dt['resturant_email']; ?> </h6>
+           <h6> Contact: <?php echo $dt['restaurant_email']; ?> </h6>
             <button type="submit" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>
 
         </div>
@@ -86,12 +86,62 @@ session_start();
       <div class="card  bg-dark " style="height:550px; max-width:230px;" >
           <div class="card-body" >
             <a data-target="#addItems" data-toggle="modal"  >Add Items</a>
-            <img class="img-fluid "  width="200" height="100"  style="margin-top:10px"src ="img/Add.png" />
+            <a data-target="#addItems" data-toggle="modal" >
+              <img class="img-fluid "  width="200" height="100"  style="margin-top:70%"src ="img/Add.png" />
+            </a>
           </div>
       </div>
     </form>
 
     </div>
+</div>
+
+<!-- Add Items -->
+
+<div class="modal fade " id="addItems" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add Items</h4>
+
+      </div>
+      <div class="modal-body">
+        <form class="animate"  enctype="multipart/form-data" action="scripts/addfood.php" method="post">
+          <div class="container">
+            <div class="row-2">
+              <label for="dishname" style="margin-top:2vw;color:black;"><b>Dish Name</b></label>
+              <input type="text" class="col-12 txtfeild" placeholder="Enter Dish Name" name="dishname" required>
+            </div>
+            <div class="row-2">
+              <label for="price" style="color:black;"><b>Price</b></label>
+              <input type="text" class="col-12 txtfeild" placeholder="Enter Price" name="price" required>
+            </div>
+              <label for="image" style="color:black;"><b>Image</b></label>
+              <input type="file" class="col-12 txtfeild"  name="image" required>
+            <label>
+              <input type="checkbox" checked="checked" style="font-color:white;" name="isveg"> Veg
+            </label>
+            <div class="row-2">
+              <button class="btn col btn3" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-sm">
+<div class="modal-content">
+  <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+  <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
+  <div class="modal-footer"><a href="scripts/logout.php" class="btn btn-block btn4">Logout</a></div>
+</div>
+</div>
 </div>
 
     <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>

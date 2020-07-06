@@ -163,7 +163,7 @@ session_start();
                 <div class="container">
                   <div class="row-2">
                     <label for="name" style="margin-top:2vw;color:black;"><b>Name</b></label>
-                    <input type="name" class="col-12 txtfeild" placeholder="Enter Name" name="uname" required>
+                    <input type="text" class="col-12 txtfeild" placeholder="Enter Name" name="uname" required>
                   </div>
                   <div class="row-2">
                     <label for="email" style="color:black;"><b>Email</b></label>
@@ -186,7 +186,7 @@ session_start();
               <form class="animate" action="scripts/restaurants_register.php" method="post">
                   <div class="row-2">
                     <label for="name" style="margin-top:2vw;color:black;"><b>Resturant Name</b></label>
-                    <input type="name" class="col-12 txtfeild " placeholder="Enter Name" name="uname" required>
+                    <input type="text" class="col-12 txtfeild " placeholder="Enter Name" name="uname" required>
                   </div>
                   <div class="row-2">
                     <label for="email" style="color:black;"><b>Email</b></label>

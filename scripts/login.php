@@ -6,7 +6,9 @@ session_start();
 require_once 'DbOperations.php';
 
 $response = array();
+
 $addr;
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	if(isset($_POST['email']) and
 				isset($_POST['psw']))
@@ -20,7 +22,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "foodies";
    		}else if($res == 1){
-        $addr='http://localhost/skel/ResturantHome.php';
+        $addr='http://localhost/skel/RestaurantHome.php';
 				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "restaurants";
       }

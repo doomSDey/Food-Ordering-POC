@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 		   $db = new DbOperations();
 
-		   $result = $db->createResturantUser( $_POST['uname'],
+		   $result = $db->createRestaurantUser( $_POST['uname'],
 									$_POST['psw'],
 									$_POST['email']
 								        );
@@ -44,5 +44,5 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 echo json_encode($response);
 
-header("Location: http://localhost/skel/ResturantHome.php");
+header("Location: http://localhost/skel/RestaurantHome.php");
 die();

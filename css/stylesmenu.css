@@ -33,26 +33,36 @@ body, html {
   font-weight: bold;
 }
 
-.search{
-  height: 2vw;
-  border-radius: 25px;
-}
-
-
 .btn{
   border-radius: 25px;
   border-color: white;
-  color: blue;
-
-  height: 2vw;
-  vertical-align:middle;
-  width: 6vw;
-  font-size: 10px;
-
-  overflow-x: hidden;
+  color: white;
   font-size-adjust: 0.58;
 }
 
 .btn:hover{
   color: white;
 }
+
+.btn5{
+  margin-right: 10px;
+  margin-top: 10px;
+  color:white;
+  border-color: grey;
+}
+
+.btn5:hover{
+  color: white;
+  border-color: white;
+}
+
+
+.navbar-brand {
+  padding: 0;
+}
+.navbar-nav .nav-link {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 50px;
+  line-height: 50px;
+} 
