@@ -137,13 +137,16 @@ public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_e
 	$stmt->execute();
 	$res=$stmt->get_result()->fetch_assoc();
 	$items;
-	if( $res['count'] > 1){
+	if( $res['count'] >= 1){
 		$items=$res['count'] +1;
+		$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ?");
+		$stmt->bind_param("i",$items);
 	}else{
 		$items=1;
+		$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
+		$stmt->bind_param("sdsiss",$dish_name,$price,$user_email,$items,$restaurant,$restaurant_email);
+
 	}
-	$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
-	$stmt->bind_param("sdsiss",$dish_name,$price,$user_email,$items,$restaurant,$restaurant_email);
 	if($stmt->execute()){
 		return 1;
 	}else{

@@ -71,12 +71,12 @@ session_start();
               <div class="card  bg-dark " style=" margin-top: 40px;height:500px;" >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
-                <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'] ;?>/>
+                <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
                 <div class="card-body">
                   <img class="img-fluid "  width="200" height="100" style="max-height:200px;min-height:200px"
                   <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
                   <h6 style="margin-top:10px" name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
-                  <input type="hidden" name="price" value=<?php echo $dt['price'] ;?>/>
+                  <input type="hidden" name="price" value=<?php echo $dt['price'] ;?>>
                   <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
                   <h6 > <?php
                   if ($dt['isveg']) {
@@ -87,11 +87,10 @@ session_start();
                   ?>
                 </h6>
                 <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
-                <input type="hidden" name="restaurant" value=<?php echo $dt['restaurant'] ;?>/>
-                <h6 name=> Contact: <?php echo $dt['resturant_email']; ?> </h6>
-                <input type="hidden" name="restaurant_email" value=<?php echo $dt['restaurant_email'] ;?>/>
+                <input type="hidden" name="restaurant" value=<?php echo $dt['restaurant'] ;?> >
+                <h6 name= > Contact: <?php echo $dt['restaurant_email']; ?> </h6>
+                <input type="hidden" name="restaurant_email" value=<?php echo $dt['restaurant_email'] ;?> >
                 <?php if (strcmp($_SESSION['type'], "restaurants")!=0) {
-                    header('Location: http://localhost/skel/index.php?msg=' . urlencode(base64_encode("Not authorized")));
                 ?>
 
                 <button type="submit" name="cart" id="cart" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>
@@ -109,6 +108,7 @@ session_start();
     require_once 'scripts/DbOperations.php';
 
     $db = new DbOperations();
+    
     if(isset($_POST["cart"])) {
         print_r($_POST);
         $res = $db->addOrder($_POST['dish_name'],$_POST['price'],$_SESSION['email'],$_POST['restaurant'],$_POST['restaurant_email']);
