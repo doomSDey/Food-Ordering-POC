@@ -21,11 +21,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $isveg=0;
     }
 
+    print_r($_POST);
     $FILES=$_POST['image'];
     $file=addslashes(file_get_contents($_FILES['image']["tmp_name"]));
 
 
-    $res = $db->addfood($_POST['dishname'],$_POST['price'],$isveg,$_POST['img'],$user['name'],$_SESSION['email']);
+    $res = $db->addfood($_POST['dishname'],$_POST['price'],$isveg,$_POST['image'],$user['name'],$_SESSION['email']);
     if($res == 1)
       $response['message'] = "Success";
     else

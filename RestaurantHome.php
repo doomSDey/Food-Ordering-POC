@@ -49,12 +49,11 @@ session_start();
 
     $db = new DbOperations();
     $res=$db->menudatares($_SESSION['email']);
-  //  print_r($res);
     $data = $res->get_result();
     while ($dt = $data->fetch_assoc()) { ?>
   <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
   <form>
-      <div class="card  bg-dark " style="height:550px;" >
+      <div class="card  bg-dark " style="height:380px;" >
 
           <h6 class="card-title " style="margin:20px "> <?php echo $dt['dish_name']; ?> </h6>
           <div class="card-body">
@@ -80,11 +79,11 @@ session_start();
   ?>
   <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
   <form>
-      <div class="card  bg-dark " style="height:550px; max-width:230px;" >
+      <div class="card  bg-dark " style="height:380px; max-width:230px;" >
           <div class="card-body" >
             <a data-target="#addItems" data-toggle="modal"  >Add Items</a>
             <a data-target="#addItems" data-toggle="modal" >
-              <img class="img-fluid "  width="200" height="100"  style="margin-top:70%"src ="img/Add.png" />
+              <img class="img-fluid "  width="200" height="100"  style="margin-top:20%"src ="img/Add.png" />
             </a>
           </div>
       </div>
@@ -98,11 +97,13 @@ require_once 'scripts/DbOperations.php';
 
 $db = new DbOperations();
 if(isset($_POST["insert"])) {
-
+  if($db->uniquefood($_POST['dishname'],$_SESSION['email']))
+  {
     $file = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
     $user = $db->getrestaurantname($_SESSION['email']);
 
+    echo' <img src = "data:image/jpeg;base64,'.base64_encode($file).'" />';
     //Converting the checkbox value into boolean
     $isveg;
     if(isset($_POST['isveg'])){
@@ -116,6 +117,12 @@ if(isset($_POST["insert"])) {
       $response['message'] = "Success";
     else
       $response['message'] = "Failed";
+
+      header("Location: http://localhost/skel/RestaurantHome.php");
+    }
+    else{
+      echo '<script>alert("Duplicate Dish.Insertion Failed")</script>';
+    }
 }
 ?>
 <!-- Add Items -->
@@ -141,7 +148,7 @@ if(isset($_POST["insert"])) {
               <input type="text" class="col-12 txtfeild" placeholder="Enter Price" name="price" required>
             </div>
               <label for="image" style="color:black;"><b>Image</b></label>
-              <input type="file" class="col-12 txtfeild" id="image" name="image" required>
+              <input type="file" class="col-12" id="image" style="margin-bottom:1vw;" name="image" required>
             <label>
               <input type="checkbox" checked="checked" style="font-color:white;" name="isveg"> Veg
             </label>

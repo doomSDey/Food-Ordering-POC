@@ -123,5 +123,13 @@ class DbOperations{
 		}
 	}
 
+	public function uniquefood($dish_name,$email){
+		$stmt = $this->con->prepare("SELECT dish_name FROM `menu` WHERE restaurant_email = ? AND dish_name = ?");
+		$stmt->bind_param("ss",$email,$dish_name);
+		$stmt->execute();
+		$stmt->store_result();
+		return $stmt->num_rows == 0;
+	}
+
 
 }
