@@ -2,9 +2,9 @@
 
 class DbOperations{
 
-		private $con;
+	private $con;
 
-		function __construct(){
+	function __construct(){
 
 		include_once 'DbConnect.php';
 
@@ -76,7 +76,7 @@ class DbOperations{
 			echo $stmt->num_rows;
 
 			if($stmt->num_rows>0)
-				return 2;
+			return 2;
 			else {
 				return 0;
 			}
@@ -88,6 +88,12 @@ class DbOperations{
 
 	public function menudata(){
 		$stmt = $this->con->prepare("SELECT * FROM `menu` ");
+		$stmt->execute();
+		return $stmt;
+	}
+
+	public function orderData(){
+		$stmt = $this->con->prepare("SELECT * FROM `orders` ");
 		$stmt->execute();
 		return $stmt;
 	}
@@ -131,26 +137,26 @@ class DbOperations{
 		return $stmt->num_rows == 0;
 	}
 
-public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_email){
-	$stmt = $this->con->prepare("SELECT count FROM `orders` WHERE restaurant_email = ? AND dish_name = ?");
-	$stmt->bind_param("ss",$restaurant_email,$dish_name);
-	$stmt->execute();
-	$res=$stmt->get_result()->fetch_assoc();
-	$items;
-	if( $res['count'] >= 1){
-		$items=$res['count'] +1;
-		$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ?");
-		$stmt->bind_param("i",$items);
-	}else{
-		$items=1;
-		$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
-		$stmt->bind_param("sdsiss",$dish_name,$price,$user_email,$items,$restaurant,$restaurant_email);
+	public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_email){
+		$stmt = $this->con->prepare("SELECT count FROM `orders` WHERE restaurant_email = ? AND dish_name = ?");
+		$stmt->bind_param("ss",$restaurant_email,$dish_name);
+		$stmt->execute();
+		$res=$stmt->get_result()->fetch_assoc();
+		$items;
+		if( $res['count'] >= 1){
+			$items=$res['count'] +1;
+			$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ?");
+			$stmt->bind_param("i",$items);
+		}else{
+			$items=1;
+			$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
+			$stmt->bind_param("sdsiss",$dish_name,$price,$user_email,$items,$restaurant,$restaurant_email);
 
+		}
+		if($stmt->execute()){
+			return 1;
+		}else{
+			return 2;
+		}
 	}
-	if($stmt->execute()){
-		return 1;
-	}else{
-		return 2;
-	}
-}
 }

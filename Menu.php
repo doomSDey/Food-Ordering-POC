@@ -24,6 +24,25 @@ session_start();
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
       <a href="index.php" class="navbar-brand">conFUSION</a>
+      <div class="row">
+        <div class="col" style="margin-left:35vw;">
+      <?php
+      require_once 'scripts/DbOperations.php';
+
+      $db = new DbOperations();
+
+      if(isset($_POST["cart"])) {
+          //print_r($_POST);
+          $res = $db->addOrder($_POST['dish_name'],$_POST['price'],$_SESSION['email'],$_POST['restaurant'],$_POST['restaurant_email']);
+          if($res == 1)
+            $response['message'] = "Success";
+          else
+            $response['message'] = "Failed";
+          }
+          echo '<div class="alert alert-success alert "> "Added to Cart" </div>';
+       ?>
+     </div>
+     </div>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,7 +64,7 @@ session_start();
           } else {
               if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
 
-            <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"href="#signin" class="nav-item nav-link btn btn5" style="color:white;width:80px;">Cart</a>
+            <a data-target="#carts" data-toggle="modal" data-target=".bs-example-modal-sm" id="MainNavHelp" href="#carts" class="nav-item nav-link btn btn5" style="color:white;width:80px;">Cart</a>
           <?php } ?>
             <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
 
@@ -55,6 +74,7 @@ session_start();
         </div>
       </div>
     </nav>
+
     <div class="container" style="color:white;    padding-top: 65px; ">
       <div class="row" style="margin:30px;">
 
@@ -103,23 +123,9 @@ session_start();
       }
       ?>
     </div>
+  </div>
 
-    <?php
-    require_once 'scripts/DbOperations.php';
 
-    $db = new DbOperations();
-    
-    if(isset($_POST["cart"])) {
-        print_r($_POST);
-        $res = $db->addOrder($_POST['dish_name'],$_POST['price'],$_SESSION['email'],$_POST['restaurant'],$_POST['restaurant_email']);
-        if($res == 1)
-          $response['message'] = "Success";
-        else
-          $response['message'] = "Failed";
-
-        }
-
-     ?>
 
     <!-- Modal Sign In-->
     <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -230,16 +236,70 @@ session_start();
       </div>
     </div>
 
-
+<!-- Logout modal -->
     <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content bg-dark">
           <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
           <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
           <div class="modal-footer"><a href="scripts/logout.php" class="btn btn-block btn4">Logout</a></div>
         </div>
       </div>
     </div>
+
+<!--Cart Modal -->
+<div class="modal " id="carts" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content bg-dark">
+
+      <div class="container" style="color:white;    padding-top: 65px; ">
+        <div class="row" style="margin:30px;">
+
+          <?php
+          require_once 'scripts/DbOperations.php';
+
+          $db = new DbOperations();
+          $res=$db->orderData();
+          //  print_r($res);
+          $data = $res->get_result();
+          while ($dt = $data->fetch_assoc()) { ?>
+            <div class=" col d-flex align-items-stretch no-gutters" >
+              <form method="post">
+                <div class="card  bg-dark "  >
+
+                  <h6 class="card-title " style="margin-left:20px"  name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
+                  <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                  <div class="card-body">
+
+                    <h6 style="margin-top:10px" name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
+                    <h6 No. of Items: > <?php echo $dt['count'];                   ?>
+                  </h6>
+                  <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
+                  <input type="hidden" name="restaurant" value=<?php echo $dt['restaurant'] ;?> >
+                  </div>
+              </div>
+            </form>
+          </div>
+          <?php
+        }
+        ?>
+      </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+    <script>
+    //disappearing alert after 2 sec
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+    }, 2000);
+    </script>
 
     <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.bundle.js" type="text/javascript"></script>
