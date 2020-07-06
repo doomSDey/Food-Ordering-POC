@@ -70,9 +70,6 @@ session_start();
               }
              ?>
            </h6>
-           <h6> Offered by: <?php echo $dt['restaurant']; ?></h6>
-           <h6> Contact: <?php echo $dt['restaurant_email']; ?> </h6>
-            <button type="submit" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>
 
         </div>
       </div>
@@ -96,6 +93,31 @@ session_start();
     </div>
 </div>
 
+<?php
+require_once 'scripts/DbOperations.php';
+
+$db = new DbOperations();
+if(isset($_POST["insert"])) {
+
+    $file = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+    $user = $db->getrestaurantname($_SESSION['email']);
+
+    //Converting the checkbox value into boolean
+    $isveg;
+    if(isset($_POST['isveg'])){
+      $isveg=1;
+    }else{
+      $isveg=0;
+    }
+
+    $res = $db->addfood($_POST['dishname'],$_POST['price'],$isveg,$file,$user['name'],$_SESSION['email']);
+    if($res == 1)
+      $response['message'] = "Success";
+    else
+      $response['message'] = "Failed";
+}
+?>
 <!-- Add Items -->
 
 <div class="modal fade " id="addItems" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -108,7 +130,7 @@ session_start();
 
       </div>
       <div class="modal-body">
-        <form class="animate"  enctype="multipart/form-data" action="scripts/addfood.php" method="post">
+        <form class="animate"  enctype="multipart/form-data"  method="post">
           <div class="container">
             <div class="row-2">
               <label for="dishname" style="margin-top:2vw;color:black;"><b>Dish Name</b></label>
@@ -119,12 +141,12 @@ session_start();
               <input type="text" class="col-12 txtfeild" placeholder="Enter Price" name="price" required>
             </div>
               <label for="image" style="color:black;"><b>Image</b></label>
-              <input type="file" class="col-12 txtfeild"  name="image" required>
+              <input type="file" class="col-12 txtfeild" id="image" name="image" required>
             <label>
               <input type="checkbox" checked="checked" style="font-color:white;" name="isveg"> Veg
             </label>
             <div class="row-2">
-              <button class="btn col btn3" type="submit">Submit</button>
+              <button class="btn col btn3" id ="insert" name="insert" type="submit">Submit</button>
             </div>
           </div>
         </form>

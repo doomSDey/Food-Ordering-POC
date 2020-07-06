@@ -114,7 +114,7 @@ class DbOperations{
 	}
 
 	public function addfood($dish_name,$price,$isveg,$image,$name,$email){
-		$stmt = $this->con->prepare("INSERT INTO `menu` (`dish_name`, `price`, `isveg`, `image`,'name','email') VALUES (?, ?, ?, ?, ?, ?);");
+		$stmt = $this->con->prepare("INSERT INTO `menu` (`dish_name`, `price`, `isveg`, `image`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
 		$stmt->bind_param("sdibss",$dish_name,$price,$isveg,$image,$name,$email);
 		if($stmt->execute()){
 			return 1;
