@@ -131,5 +131,23 @@ class DbOperations{
 		return $stmt->num_rows == 0;
 	}
 
-
+public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_email){
+	$stmt = $this->con->prepare("SELECT count FROM `orders` WHERE restaurant_email = ? AND dish_name = ?");
+	$stmt->bind_param("ss",$restaurant_email,$dish_name);
+	$stmt->execute();
+	$res=$stmt->get_result()->fetch_assoc();
+	$items;
+	if( $res['count'] > 1){
+		$items=$res['count'] +1;
+	}else{
+		$items=1;
+	}
+	$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
+	$stmt->bind_param("sdsiss",$dish_name,$price,$user_email,$items,$restaurant,$restaurant_email);
+	if($stmt->execute()){
+		return 1;
+	}else{
+		return 2;
+	}
+}
 }
