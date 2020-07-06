@@ -256,10 +256,8 @@ session_start();
         <div class="row" style="margin:30px;">
 
           <?php
-          require_once 'scripts/DbOperations.php';
-
-          $db = new DbOperations();
-          $res=$db->orderData();
+        
+          $res=$db->orderData($_SESSION['email']);
           //  print_r($res);
           $data = $res->get_result();
           while ($dt = $data->fetch_assoc()) { ?>

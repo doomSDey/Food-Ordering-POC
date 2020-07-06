@@ -92,8 +92,9 @@ class DbOperations{
 		return $stmt;
 	}
 
-	public function orderData(){
-		$stmt = $this->con->prepare("SELECT * FROM `orders` ");
+	public function orderData($email){
+		$stmt = $this->con->prepare("SELECT * FROM `orders` where cust_email = ? ");
+		$stmt->bind_param("s",$email);
 		$stmt->execute();
 		return $stmt;
 	}
@@ -145,8 +146,8 @@ class DbOperations{
 		$items;
 		if( $res['count'] >= 1){
 			$items=$res['count'] +1;
-			$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ?");
-			$stmt->bind_param("i",$items);
+			$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ? where dish_name = ?");
+			$stmt->bind_param("is",$items,$dish_name);
 		}else{
 			$items=1;
 			$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
