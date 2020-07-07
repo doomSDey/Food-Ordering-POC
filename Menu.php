@@ -36,15 +36,15 @@ error_reporting(0);
           if (isset($_POST['cart']) && isset($_SESSION['email'])) {
             //print_r($_POST);
 
-            $res = $db->addOrder($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
+            $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
             if ($res == 1) {
               $response['message'] = "Success";
+              echo '<div class="alert alert-success alert "> "Added to Cart" </div>';
             } else {
               $response['message'] = "Failed";
+              echo '<div class="alert alert-danger alert "> "Failed! Please Try again" </div>';
             }
-            echo '<div class="alert alert-success alert "> "Added to Cart" </div>';
           }
-
           ?>
         </div>
       </div>
