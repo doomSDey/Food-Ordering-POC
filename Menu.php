@@ -35,6 +35,7 @@ error_reporting(0);
 
           if (isset($_POST['cart']) && isset($_SESSION['email'])) {
             //print_r($_POST);
+
             $res = $db->addOrder($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
             if ($res == 1) {
               $response['message'] = "Success";
@@ -262,13 +263,13 @@ error_reporting(0);
           </button>
         </div>
         <div class="modal-body">
-          <form class="animate"  method="post">
+          <form class="animate" action="scripts/login.php" method="post">
             <div class="container">
               <div class="row" >
 
                 <?php
                 $tot=0;
-                $res=$db->orderData($_SESSION['email']);
+                $res=$db->cartData($_SESSION['email']);
                 //  print_r($res);
                 $data = $res->get_result();
                 while ($dt = $data->fetch_assoc()) { ?>
