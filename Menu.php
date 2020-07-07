@@ -278,7 +278,9 @@ session_start();
           <h4 class="modal-title" style="color:white" id="myModalLabel">Cart</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ">
+          <div class="container overflow-auto scrollbar" id="style-1" style="max-height:35vw">
+
           <form class="animate"  method="post">
             <div class="container">
               <div class="row" >
@@ -293,7 +295,7 @@ session_start();
                     <form method="post">
                     <h6 class="card-title " style="margin-left:20px;margin-bottom:-10px;margin-top: 10px;color:white"  name="dish_name">Dish Name:  <?php echo $dt['dish_name']; ?> </h6>
                     <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
-                    <button type="submit" class="close" name="remove_item" style="margin-top:30px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="submit" class="close" name="remove_item" style="margin-top:50px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </form>
                     <div class="card-body">
                       <div class="row">
@@ -308,7 +310,7 @@ session_start();
                     </div>
                     <div class="row-4 ">
                       <?php $image=$db->get_image($dt['dish_name']) ?>
-                      <img class="img-fluid thumb"
+                      <img class="img-fluid thumbn"
                       <?php echo' src = "data:image/jpeg;base64,'.base64_encode($image['image']).'"' ?>/>
                     </div>
                     </div>
@@ -329,6 +331,7 @@ session_start();
             </div>
           </div>
         </form>
+      </div>
       </div>
 
     </div>
