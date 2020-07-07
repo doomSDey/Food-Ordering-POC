@@ -108,7 +108,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
     <?php
     if (isset($_POST["insert"])) {
         if ($db->uniquefood($_POST['dishname'], $_SESSION['email'])) {
-            $file = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+            $file = file_get_contents(addslashes($_FILES['image']['tmp_name']));
             $user = $db->getrestaurantname($_SESSION['email']);
             //echo' <img src = "data:image/jpeg;base64,'.base64_encode($file).'" />';
             //Converting the checkbox value into boolean

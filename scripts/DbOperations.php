@@ -136,7 +136,8 @@ class DbOperations{
 
 	public function addfood($dish_name,$price,$isveg,$image,$name,$email){
 		$stmt = $this->con->prepare("INSERT INTO `menu` (`dish_name`, `price`, `isveg`, `image`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
-		$stmt->bind_param("sdibss",$dish_name,$price,$isveg,$image,$name,$email);
+		//echo '<img src = "data:image/jpeg;base64,'.base64_encode($image).'" />';
+		$stmt->bind_param("sdisss",$dish_name,$price,$isveg,$image,$name,$email);
 		if($stmt->execute()){
 			return 1;
 		}else{
