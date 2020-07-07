@@ -34,3 +34,85 @@ echo'
 
 </div>
 ';
+
+public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_email){
+	$stmt = $this->con->prepare("SELECT count FROM `orders` WHERE restaurant_email = ? AND dish_name = ?");
+	$stmt->bind_param("ss",$restaurant_email,$dish_name);
+	$stmt->execute();
+	$res=$stmt->get_result()->fetch_assoc();
+	$items;
+	if( $res['count'] > 1){
+		$items=$res['count'] +1;
+		print_r($items);
+		$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ?");
+		$stmt->bind_param("i",$items);
+	}else{
+		$items=1;
+		print_r($items);
+		$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
+		$stmt->bind_param("sdsiss",$dish_name,$price,$user_emai,$items,$restaurant,$restaurant_email);
+		$stmt->execute();
+	}
+	if($stmt->execute()){
+		return 1;
+	}else{
+		return 2;
+	}
+}
+
+public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_email){
+	$stmt = $this->con->prepare("SELECT count FROM `orders` WHERE restaurant_email = ? AND dish_name = ?");
+	$stmt->bind_param("ss",$restaurant_email,$dish_name);
+	$stmt->execute();
+	$res=$stmt->get_result()->fetch_assoc();
+	$items;
+	if( $res['count'] > 1){
+		$items=$res['count'] +1;
+		print_r($items);
+		$stmt = $this->con->prepare("UPDATE `orders` SET  `count` = ?");
+		$stmt->bind_param("i",$items);
+	}else{
+		$items=1;
+		$stmt = $this->con->prepare("INSERT INTO `orders` (`dish_name`, `price`, `cust_email`, `count`,`restaurant`,`restaurant_email`) VALUES (?, ?, ?, ?, ?, ?);");
+		$stmt->bind_param("sdsiss",$dish_name,$price,$user_emai,$items,$restaurant,$restaurant_email);
+	}
+	if($stmt->execute()){
+		echo "string";
+		return 1;
+	}else{
+		return 2;
+	}
+}
+}
+
+<div class="container" style="color:white;    padding-top: 65px; ">
+  <div class="row" >
+
+    <?php
+
+    $res=$db->orderData($_SESSION['email']);
+    //  print_r($res);
+    $data = $res->get_result();
+    while ($dt = $data->fetch_assoc()) { ?>
+      <div class=" col d-flex align-items-stretch no-gutters" >
+        <form method="post">
+          <div class="card  bg-dark "  >
+
+            <h6 class="card-title " style="margin-left:20px"  name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
+            <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+            <div class="card-body">
+
+              <h6 style="margin-top:10px" name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
+              <h6 >  No. of Items: <?php echo $dt['count'];                   ?>
+            </h6>
+            <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
+            <input type="hidden" name="restaurant" value=<?php echo $dt['restaurant'] ;?> >
+            </div>
+        </div>
+      </form>
+    </div>
+    <?php
+  }
+  ?>
+</div>
+</div>

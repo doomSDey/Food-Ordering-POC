@@ -23,6 +23,25 @@ body, html {
 
 }
 
+/* The Close Button */
+.close {
+  /* Position it in the top right corner outside of the modal */
+  position: absolute;
+  right: 25px;
+  top: 1vw;
+  color: black;
+  font-size: 35px;
+  font-weight: bold;
+  outline: none;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+  outline: none;
+}
+
 .hd{
   height: 50%;
   width: 80%;
@@ -56,6 +75,13 @@ body, html {
   border-color: white;
 }
 
+.txtfeild{
+  border-radius: 25px;
+  outline: none;
+  background-color: #dbdbdb;
+  border:3px;
+  margin-bottom: 1vw;
+}
 
 .navbar-brand {
   padding: 0;
@@ -65,4 +91,4 @@ body, html {
   padding-bottom: 0;
   height: 50px;
   line-height: 50px;
-} 
+}
