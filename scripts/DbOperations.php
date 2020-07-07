@@ -225,4 +225,11 @@ class DbOperations{
 			return 2;
 	}
 
+	public function get_image($dish_name){
+		$stmt = $this->con->prepare("SELECT image FROM `menu` WHERE dish_name = ?");
+		$stmt->bind_param("s",$dish_name);
+		$stmt->execute();
+		return $stmt->get_result()->fetch_assoc();
+	}
+
 }

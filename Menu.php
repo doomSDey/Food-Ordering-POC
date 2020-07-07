@@ -296,7 +296,8 @@ session_start();
                     <button type="submit" class="close" name="remove_item" style="margin-top:30px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </form>
                     <div class="card-body">
-
+                      <div class="row">
+                      <div class="col-6">
                       <h6  name="price"> Price: Rs. <?php
                       $tot=$tot+($dt['price']*$dt['count']);
                       echo  $dt['price'];
@@ -304,6 +305,13 @@ session_start();
                       <h6 >  No. of Items: <?php echo $dt['count'];                   ?>
                       </h6>
                       <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
+                    </div>
+                    <div class="row-4 ">
+                      <?php $image=$db->get_image($dt['dish_name']) ?>
+                      <img class="img-fluid thumb"
+                      <?php echo' src = "data:image/jpeg;base64,'.base64_encode($image['image']).'"' ?>/>
+                    </div>
+                    </div>
                     </div>
                   </div>
                   <?php

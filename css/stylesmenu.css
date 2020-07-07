@@ -1,6 +1,6 @@
 .head {
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 body, html {
@@ -20,8 +20,6 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: #888;
 }
-
-
 
 .bg {
   /* The image used */
@@ -54,6 +52,10 @@ body.modal-open-noscroll {
   font-size: 35px;
   font-weight: bold;
   outline: none;
+}
+
+.thumbn{
+  max-width: 50px;
 }
 
 .close:hover {
