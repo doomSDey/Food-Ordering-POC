@@ -90,7 +90,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         <?php
       }
       ?>
-      
+
       <?php
         if(isset($_POST['order_done'])){
           $res=$db->order_done($_POST['dish_name'],$_POST['cust_email']);
@@ -99,8 +99,8 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
       <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
         <form>
-          <div class="card  bg-dark ele" style="height:380px; max-width:230px;" >
-            <div class="card-body" >
+          <div class="card  bg-dark addItem" style="height:380px; max-width:230px;" >
+            <div class="card-body addItem" >
               <a data-target="#addItems" data-toggle="modal"  >Add Items</a>
               <a data-target="#addItems" data-toggle="modal" >
                 <img class="img-fluid "  width="200" height="100"  style="margin-top:20%"src ="img/Add.png" />
@@ -214,6 +214,8 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                         </div>
                         <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
                         <div class="card-body">
+                          <div class="row">
+                            <div class="col-6">
                           <h6> Customer Name: <?php
                           $arr = $db->getName($dt['cust_email']);
                           echo $arr['name'];
@@ -226,7 +228,14 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                           echo  $dt['price'];
                           ?> </h6>
                           <h6 >  No. of Items: <?php echo $dt['count'];?>
+                          </div>
+                            <div class="row-4 ">
+                              <?php $image=$db->get_image($dt['dish_name']) ?>
+                              <img class="img-fluid thumbn"
+                              <?php echo' src = "data:image/jpeg;base64,'.base64_encode($image['image']).'"' ?>/>
+                            </div>
                         </div>
+                      </div>
                       </form>
                     </div>
                     <?php

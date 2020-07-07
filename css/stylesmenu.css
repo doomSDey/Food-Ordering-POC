@@ -71,6 +71,14 @@ body.modal-open-noscroll {
   margin-right: 0 !important;
 }
 
+.addItem{
+  border-color: grey;
+}
+
+.addItem:hover{
+  border-color: white;
+}
+
 /* The Close Button */
 .close {
   /* Position it in the top right corner outside of the modal */
