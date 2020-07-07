@@ -41,5 +41,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   }
 echo $_SESSION["email"];
 echo json_encode($response);
-header("Location: $addr");
+if($addr)
+	header("Location: $addr"."?msg=".urlencode(base64_encode("Success!")));
+else
+	header("Location: http://localhost/skel/index.php?msg=". urlencode(base64_encode("Error!")));
 die();

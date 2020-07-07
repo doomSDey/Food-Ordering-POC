@@ -48,10 +48,8 @@ session_start();
       <div class="navbar-nav text-right">
           <?php
             if (!$_SESSION['email']) { ?>
-              <a  data-target="#signup" data-toggle="modal"  id="MainNavHelp"
-         href="#signup" class="nav-item nav-link" style="color:white;transition: transform .4s;">Sign Up</a>
-              <a data-target="#signin" data-toggle="modal"  id="MainNavHelp"
-         href="#signin" class="nav-item nav-link" style="color:white; transition: transform .4s;">Sign In</a>
+              <button class="btn btn5" data-toggle="modal" data-target="#signup">Sign Up </button>
+              <button class="btn btn5" data-toggle="modal" data-target="#signin">Sign In </button>
          <?php
             } else {
                 ?>

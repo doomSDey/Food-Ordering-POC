@@ -28,6 +28,12 @@ session_start();
       <div class="row">
         <div class="col" style="margin-left:35vw;">
           <?php
+          error_reporting(0);
+
+          if ($_GET['msg']) {
+              echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+          }
+
           require_once 'scripts/DbOperations.php';
 
           $db = new DbOperations();
