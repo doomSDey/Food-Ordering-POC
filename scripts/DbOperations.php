@@ -145,6 +145,21 @@ class DbOperations{
 		}
 	}
 
+	public function menu_data_delete($email,$dish_name){
+		$stmt = $this->con->prepare("DELETE FROM `menu` WHERE restaurant_email = ? AND dish_name=?");
+		$stmt->bind_param("ss",$email,$dish_name);
+		if($stmt->execute()){
+			$stmt = $this->con->prepare("DELETE FROM `orders` WHERE restaurant_email = ? AND dish_name=?");
+			$stmt->bind_param("ss",$email,$dish_name);
+			if($stmt->execute())
+				return 1;
+			else
+				return 2;
+		}else
+			return 2;
+
+	}
+
 	public function uniquefood($dish_name,$email){
 		$stmt = $this->con->prepare("SELECT dish_name FROM `menu` WHERE restaurant_email = ? AND dish_name = ?");
 		$stmt->bind_param("ss",$email,$dish_name);

@@ -268,7 +268,7 @@ error_reporting(0);
 
                 <?php
                 $tot=0;
-                $res=$db->cartData($_SESSION['email']);
+                $res=$db->orderData($_SESSION['email']);
                 //  print_r($res);
                 $data = $res->get_result();
                 while ($dt = $data->fetch_assoc()) { ?>
