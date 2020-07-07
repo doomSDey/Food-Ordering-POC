@@ -1,6 +1,5 @@
 <?php
 session_start();
-error_reporting(0);
 
 ?>
 <DOCTYPE html>
@@ -39,11 +38,20 @@ error_reporting(0);
             $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
             if ($res == 1) {
               $response['message'] = "Success";
-              echo '<div class="alert alert-success alert "> "Added to Cart" </div>';
+              echo '<div class="alert alert-success  "> "Added to Cart" </div>';
             } else {
               $response['message'] = "Failed";
-              echo '<div class="alert alert-danger alert "> "Failed! Please Try again" </div>';
+              echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
             }
+          }
+
+          if (isset($_POST['PlaceOrder'])){
+            $res = $db->addToOrder($_SESSION['email']);
+            if($res==1)
+              echo '<div class="alert alert-success  "> "Order Placed" </div>';
+            else
+            echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
+
           }
           ?>
         </div>
@@ -265,7 +273,7 @@ error_reporting(0);
           </button>
         </div>
         <div class="modal-body">
-          <form class="animate" action="scripts/login.php" method="post">
+          <form class="animate"  method="post">
             <div class="container">
               <div class="row" >
 
@@ -293,7 +301,11 @@ error_reporting(0);
                   <?php
                 }
                 ?>
-                <h4 style="color:white;margin-top:10px;">Total Amount: <?php echo $tot; ?> </h4>
+                <h4 style="color:white;margin-top:20px;">Total Amount: <?php echo $tot; ?> </h4>
+                <form method="post">
+                  <button class="btn btn5 btn-success" type="submit" style="margin-left:20px" name="PlaceOrder">Place Order</button>
+                </form>
+
               </div>
             </div>
           </div>
