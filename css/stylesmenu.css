@@ -1,4 +1,4 @@
-.head{
+.head {
   display: flex;
   align-items: center
 }
@@ -8,19 +8,29 @@ body, html {
   margin: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
 .bg {
   /* The image used */
   background-image: url("../img/menu.jpeg");
-
   /* Full height */
   height: 100%;
-
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-    background-attachment: fixed;
+  background-attachment: fixed;
+}
 
+body.modal-open-noscroll {
+  margin-right: 0 !important;
+  overflow: hidden;
+}
+
+.modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+  margin-right: 0 !important;
 }
 
 /* The Close Button */
@@ -42,50 +52,52 @@ body, html {
   outline: none;
 }
 
-.hd{
+.hd {
   height: 50%;
   width: 80%;
 }
-.logo{
+
+.logo {
   color: white;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
 }
 
-.btn{
+.btn {
   border-radius: 25px;
   border-color: white;
   color: white;
   font-size-adjust: 0.58;
 }
 
-.btn:hover{
+.btn:hover {
   color: white;
 }
 
-.btn5{
+.btn5 {
   margin-right: 10px;
   margin-top: 10px;
-  color:white;
+  color: white;
   border-color: grey;
 }
 
-.btn5:hover{
+.btn5:hover {
   color: white;
   border-color: white;
 }
 
-.txtfeild{
+.txtfeild {
   border-radius: 25px;
   outline: none;
   background-color: #dbdbdb;
-  border:3px;
+  border: 3px;
   margin-bottom: 1vw;
 }
 
 .navbar-brand {
   padding: 0;
 }
+
 .navbar-nav .nav-link {
   padding-top: 0;
   padding-bottom: 0;

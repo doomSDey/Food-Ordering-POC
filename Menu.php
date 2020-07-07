@@ -17,11 +17,12 @@ error_reporting(0);
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="css/stylesmenu.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylessupp.css" type="text/css" rel="stylesheet">
 
     <title>ConFusion</title>
   </head>
 
-  <body class="bg">
+  <body class="bg ">
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
       <a href="index.php" class="navbar-brand">conFUSION</a>
@@ -66,7 +67,7 @@ error_reporting(0);
           } else {
             if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
 
-              <a data-target="#carts" data-toggle="modal" data-target=".bs-example-modal-sm" id="MainNavHelp" href="#carts" class="nav-item nav-link btn btn5" style="color:white;width:80px;">Cart</a>
+              <button class="btn btn5" data-toggle="modal" data-target="#carts">Cart </button>
             <?php } ?>
             <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
 
@@ -244,8 +245,8 @@ error_reporting(0);
   <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content bg-dark">
-        <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
-        <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
+        <div class="modal-header" style="color:white"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+        <div class="modal-body" style="color:white"><i class="fa fa-question-circle"></i> Are you sure you want to log-out?</div>
         <div class="modal-footer"><a href="scripts/logout.php" class="btn btn-block btn4">Logout</a></div>
       </div>
     </div>
@@ -256,18 +257,18 @@ error_reporting(0);
     <div class="modal-dialog bg-dark">
       <div class="modal-content bg-dark">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Cart</h4>
+          <h4 class="modal-title" style="color:white" id="myModalLabel">Cart</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form class="animate" action="scripts/login.php" method="post">
+          <form class="animate"  method="post">
             <div class="container">
               <div class="row" >
 
                 <?php
-
-                $res=$db->orderData($_SESSION['email']);
+                $tot=0;
+                $res=$db->cartData($_SESSION['email']);
                 //  print_r($res);
                 $data = $res->get_result();
                 while ($dt = $data->fetch_assoc()) { ?>
@@ -277,7 +278,10 @@ error_reporting(0);
                     <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
                     <div class="card-body">
 
-                      <h6  name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
+                      <h6  name="price"> Price: Rs. <?php
+                      $tot=$tot+($dt['price']*$dt['count']);
+                      echo  $dt['price'];
+                      ?> </h6>
                       <h6 >  No. of Items: <?php echo $dt['count'];                   ?>
                       </h6>
                       <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
@@ -286,6 +290,7 @@ error_reporting(0);
                   <?php
                 }
                 ?>
+                <h4 style="color:white;margin-top:10px;">Total Amount: <?php echo $tot; ?> </h4>
               </div>
             </div>
           </div>
@@ -294,7 +299,6 @@ error_reporting(0);
 
     </div>
   </div>
-</div>
 
 
 <script>

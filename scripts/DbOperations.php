@@ -92,8 +92,23 @@ class DbOperations{
 		return $stmt;
 	}
 
-	public function orderData($email){
+	public function getName($email){
+		$stmt = $this->con->prepare("SELECT name FROM `foodies` where email=? ");
+		$stmt->bind_param("s",$email);
+		$stmt->execute();
+		return $stmt->get_result()->fetch_assoc();
+
+	}
+
+	public function cartData($email){
 		$stmt = $this->con->prepare("SELECT * FROM `orders` where cust_email = ? ");
+		$stmt->bind_param("s",$email);
+		$stmt->execute();
+		return $stmt;
+	}
+
+	public function orderData($email){
+		$stmt = $this->con->prepare("SELECT * FROM `orders` where restaurant_email = ? ");
 		$stmt->bind_param("s",$email);
 		$stmt->execute();
 		return $stmt;

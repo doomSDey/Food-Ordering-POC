@@ -17,8 +17,9 @@ session_start();
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
-    <link rel="stylesheet" href="css/styles.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="css/stylesmenu.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylessupp.css" type="text/css" rel="stylesheet">
+
 
     <title>ConFusion</title>
   </head>
@@ -35,7 +36,7 @@ session_start();
 
 
         <div class="navbar-nav text-right">
-            <a href="#" class=" btn btn5 nav-item nav-link active">Orders</a>
+          <button class="btn btn5" data-toggle="modal" data-target="#orders">Orders </button>
           <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
         </div>
     </div>
@@ -79,7 +80,7 @@ session_start();
   ?>
   <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
   <form>
-      <div class="card  bg-dark " style="height:380px; max-width:230px;" >
+      <div class="card  bg-dark ele" style="height:380px; max-width:230px;" >
           <div class="card-body" >
             <a data-target="#addItems" data-toggle="modal"  >Add Items</a>
             <a data-target="#addItems" data-toggle="modal" >
@@ -96,32 +97,31 @@ session_start();
 require_once 'scripts/DbOperations.php';
 
 $db = new DbOperations();
-if(isset($_POST["insert"])) {
-  if($db->uniquefood($_POST['dishname'],$_SESSION['email']))
-  {
-    $file = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+if (isset($_POST["insert"])) {
+    if ($db->uniquefood($_POST['dishname'], $_SESSION['email'])) {
+        $file = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-    $user = $db->getrestaurantname($_SESSION['email']);
+        $user = $db->getrestaurantname($_SESSION['email']);
 
-    echo' <img src = "data:image/jpeg;base64,'.base64_encode($file).'" />';
-    //Converting the checkbox value into boolean
-    $isveg;
-    if(isset($_POST['isveg'])){
-      $isveg=1;
-    }else{
-      $isveg=0;
-    }
+        echo' <img src = "data:image/jpeg;base64,'.base64_encode($file).'" />';
+        //Converting the checkbox value into boolean
+        $isveg;
+        if (isset($_POST['isveg'])) {
+            $isveg=1;
+        } else {
+            $isveg=0;
+        }
 
-    $res = $db->addfood($_POST['dishname'],$_POST['price'],$isveg,$file,$user['name'],$_SESSION['email']);
-    if($res == 1)
-      $response['message'] = "Success";
-    else
-      $response['message'] = "Failed";
+        $res = $db->addfood($_POST['dishname'], $_POST['price'], $isveg, $file, $user['name'], $_SESSION['email']);
+        if ($res == 1) {
+            $response['message'] = "Success";
+        } else {
+            $response['message'] = "Failed";
+        }
 
-      header("Location: http://localhost/skel/RestaurantHome.php");
-    }
-    else{
-      echo '<script>alert("Duplicate Dish.Insertion Failed")</script>';
+        header("Location: http://localhost/skel/RestaurantHome.php");
+    } else {
+        echo '<script>alert("Duplicate Dish.Insertion Failed")</script>';
     }
 }
 ?>
@@ -172,6 +172,56 @@ if(isset($_POST["insert"])) {
 </div>
 </div>
 </div>
+
+
+  <!--Order Modal -->
+  <div class="modal fade " id="orders" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog bg-dark">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h4 class="modal-title" style="color:white" id="myModalLabel">Orders</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container overflow-auto" style="max-height:35vw">
+              <div class="row" >
+
+                <?php
+                $tot=0;
+                $res=$db->orderData($_SESSION['email']);
+                //  print_r($res);
+                $data = $res->get_result();
+                while ($dt = $data->fetch_assoc()) { ?>
+                  <div class="card col-12  bg-dark " style="color:white"  >
+
+                    <h6 class="card-title " style="margin-left:20px;padding-bottom:-30px;color:white"  name="dish_name">Dish Name: <?php echo $dt['dish_name']; ?> </h6>
+                    <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                    <div class="card-body">
+                      <h6> Customer Name: <?php
+                        $arr = $db->getName($dt['cust_email']);
+                        echo $arr['name'];
+                       ?>
+                      <h6 > Price: Rs. <?php
+                      $tot=$tot+1;
+                      echo  $dt['price'];
+                      ?> </h6>
+                      <h6 >  No. of Items: <?php echo $dt['count'];                   ?>
+                      </h6>
+                      <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
+                    </div>
+                  </div>
+                  <?php
+                }
+                ?>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
 
     <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
     <script src="bootstrap-4.3.1-dist/js/bootstrap.bundle.js" type="text/javascript"></script>
