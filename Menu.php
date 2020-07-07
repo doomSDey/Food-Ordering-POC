@@ -263,14 +263,20 @@ session_start();
     </div>
   </div>
 
+  <?php
+    if(isset($_POST['remove_item'])){
+      $res=$db->rem_frm_cart($_POST['dish_name'],$_SESSION['email']);
+      echo 'window.location.reload()';
+
+    }
+   ?>
   <!--Cart Modal -->
   <div class="modal fade " id="carts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-dark">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h4 class="modal-title" style="color:white" id="myModalLabel">Cart</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
           <form class="animate"  method="post">
@@ -284,9 +290,11 @@ session_start();
                 $data = $res->get_result();
                 while ($dt = $data->fetch_assoc()) { ?>
                   <div class="card col-12  bg-dark " style="color:white"  >
-
-                    <h6 class="card-title " style="margin-left:20px;padding-bottom:-30px;color:white"  name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
+                    <form method="post">
+                    <h6 class="card-title " style="margin-left:20px;margin-bottom:-10px;margin-top: 10px;color:white"  name="dish_name">Dish Name:  <?php echo $dt['dish_name']; ?> </h6>
                     <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                    <button type="submit" class="close" name="remove_item" style="margin-top:30px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </form>
                     <div class="card-body">
 
                       <h6  name="price"> Price: Rs. <?php
@@ -303,7 +311,10 @@ session_start();
                 ?>
                 <h4 style="color:white;margin-top:20px;">Total Amount: <?php echo $tot; ?> </h4>
                 <form method="post">
+                  <!-- Hiding the Place order button if total amout = 0 -->
+                  <?php if ($tot!=0){ ?>
                   <button class="btn btn5 btn-success" type="submit" style="margin-left:20px" name="PlaceOrder">Place Order</button>
+                <?php } ?>
                 </form>
 
               </div>

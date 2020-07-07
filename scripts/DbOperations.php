@@ -216,4 +216,13 @@ class DbOperations{
 			return 2;
 	}
 
+	public function rem_frm_cart($dish_name,$cust_email){
+		$stmt = $this->con->prepare("DELETE FROM `cart` WHERE cust_email = ? AND dish_name=?");
+		$stmt->bind_param("ss",$cust_email,$dish_name);
+		if($stmt->execute())
+			return 1;
+		else
+			return 2;
+	}
+
 }

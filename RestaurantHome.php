@@ -24,6 +24,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
   </head>
 
   <body class="bg">
+
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
       <a href="index.php" class="navbar-brand">conFUSION</a>
@@ -89,7 +90,12 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         <?php
       }
       ?>
-
+      
+      <?php
+        if(isset($_POST['order_done'])){
+          $res=$db->order_done($_POST['dish_name'],$_POST['cust_email']);
+        }
+       ?>
 
       <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
         <form>
@@ -234,11 +240,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
 
-      <?php
-        if(isset($_POST['order_done'])){
-          $res=$db->order_done($_POST['dish_name'],$_POST['cust_email']);
-        }
-       ?>
+
       <script>
       //disappearing alert after 2 sec
       window.setTimeout(function() {
