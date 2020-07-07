@@ -70,7 +70,7 @@ session_start();
       </div>
 
       <div class="row">
-        <h3 class="tag">Experience the great food</h3>
+        <h3 class="tag">Food for your soul</h3>
       </div>
 
       <div class="row ">

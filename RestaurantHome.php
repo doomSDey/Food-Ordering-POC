@@ -52,6 +52,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
         <div class="navbar-nav text-right">
           <button class="btn btn5" data-toggle="modal" data-target="#orders">Orders </button>
+          <button class="btn btn5"onclick="location.href='Menu.php'" >Menu </button></a>
           <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
         </div>
       </div>
@@ -202,8 +203,8 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                   <div class="card col-12  bg-dark " style="color:white"  >
                     <form method="post">
                       <div class="row">
-                        <h6 class="card-title " style="margin-left:35px;margin-top: 20px;color:white"  name="dish_name">Dish Name: <?php echo $dt['dish_name']; ?> </h6>
-                        <button type="submit" class="close" style="font-size:1.5vw;"data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Done&times;</span>
+                        <h6 class="card-title col-9" style="margin-left:20px;margin-top:20px;color:white"  name="dish_name">Dish Name: <?php echo $dt['dish_name']; ?> </h6>
+                        <button type="submit" name="order_done" class="btn btn-5 btn-success" style="font-size:1vw;margin-top:20px;height:40px;line-height:20px;" >Done</button>
                         </div>
                         <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
                         <div class="card-body">
@@ -213,14 +214,12 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                           ?>
                           <!--Hidden Inputs for deleting orders -->
                           <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
-                          <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                          <input type="hidden" name="cust_email" value=<?php echo $dt['cust_email'];?>>
                           <h6 > Price: Rs. <?php
                           $tot=$tot+1;
                           echo  $dt['price'];
                           ?> </h6>
-                          <h6 >  No. of Items: <?php echo $dt['count'];                   ?>
-                          </h6>
-                          <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
+                          <h6 >  No. of Items: <?php echo $dt['count'];?>
                         </div>
                       </form>
                     </div>
@@ -235,6 +234,11 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
 
+      <?php
+        if(isset($_POST['order_done'])){
+          $res=$db->order_done($_POST['dish_name'],$_POST['cust_email']);
+        }
+       ?>
       <script>
       //disappearing alert after 2 sec
       window.setTimeout(function() {

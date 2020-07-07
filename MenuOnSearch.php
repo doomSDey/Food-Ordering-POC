@@ -25,7 +25,7 @@ error_reporting(0);
   <body class="bg ">
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
-      <a href="index.php" class="navbar-brand">conFUSION</a>
+      <a href="Menu.php" class="navbar-brand">conFUSION</a>
       <div class="row">
         <div class="col" style="margin-left:35vw;">
           <?php

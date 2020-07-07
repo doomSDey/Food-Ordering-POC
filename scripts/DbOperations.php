@@ -21,7 +21,6 @@ class DbOperations{
 			$password = md5($psw);
 			$stmt = $this->con->prepare("INSERT INTO `restaurants` (`name`, `password`, `email`) VALUES (?, ?, ?);");
 			$stmt->bind_param("sss",$uname,$password,$email);
-
 			if($stmt->execute()){
 				return 1;
 			}else{
@@ -166,6 +165,15 @@ class DbOperations{
 		$stmt->execute();
 		$stmt->store_result();
 		return $stmt->num_rows == 0;
+	}
+
+	public function order_done($dish_name,$email){
+		$stmt = $this->con->prepare("DELETE FROM `orders` WHERE cust_email = ? AND dish_name=?");
+		$stmt->bind_param("ss",$email,$dish_name);
+		if($stmt->execute())
+			return 1;
+		else
+			return 2;
 	}
 
 	public function addOrder($dish_name,$price,$user_email,$restaurant,$restaurant_email){

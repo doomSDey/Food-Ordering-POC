@@ -69,6 +69,8 @@ error_reporting(0);
             if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
 
               <button class="btn btn5" data-toggle="modal" data-target="#carts">Cart </button>
+            <?php }else{ ?>
+              <button class="btn btn5" onclick="location.href='RestaurantHome.php'">Home </button>
             <?php } ?>
             <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
 
@@ -92,7 +94,7 @@ error_reporting(0);
         while ($dt = $data->fetch_assoc()) { ?>
           <div class=" col-xl-3 col-md-4 col-xs-12 col-sm-6 d-flex align-items-stretch no-gutters" >
             <form method="post">
-              <div class="card  bg-dark " style=" margin-top: 40px;height:500px;" >
+              <div class="card  bg-dark " style=" margin-top: 40px;height:500px;padding:3px;min-width:200px" >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
                 <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
