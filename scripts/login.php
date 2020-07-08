@@ -36,11 +36,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$response['error'] = true;
 	$response['message'] = "Invalid Request";
 }
-echo $_SESSION["email"];
-echo json_encode($response);
-if ($addr) {
-	header("Location: $addr"."?msg=".urlencode(base64_encode("Success!")));
-} else {
-	header("Location:../index.php?msg=". urlencode(base64_encode("Error!")));
+if($response['error'] == true && $_POST['id']==1){
+	header("Location:../Index.php"."?msg=".urlencode(base64_encode($response['message'])));
+}else{
+	header("Location:../Menu.php"."?msg=".urlencode(base64_encode($response['message'])));
 }
+
+if ($addr) {
+	header("Location: $addr"."?msg=".urlencode(base64_encode($response['message'])));
+}
+
 die();

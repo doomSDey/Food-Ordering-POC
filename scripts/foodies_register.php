@@ -30,16 +30,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 		if ($result == 1) {
 			$response['error'] = false;
-			$response['message'] = "User registered successfully";
-			$_SESSION["name"] = "$uname";
-			$_SESSION["email"] = "$email";
+			$response['message'] = "Success";
+			$_SESSION["email"] = $_POST['email'];
 			$_SESSION["type"] = "foodies";
 		} elseif ($result == 2) {
 			$response['error'] = true;
-			$response['message'] = "Some error occurred please try again";
+			$response['message'] = "Error";
 		} elseif ($result == 0) {
 			$response['error'] = true;
-			$response['message'] = "It seems you are already registered, please choose a different email and username";
+			$response['message'] = "Already registered";
 		}
 	} else {
 		$response['error'] = true;
@@ -52,5 +51,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 echo json_encode($response);
 
-header("Location:../Menu.php?msg=".urlencode(base64_encode("Success!")));
+if($_POST['id']==1 && 	$response['error'] == true){
+	header("Location: ../Index.php"."?msg=".urlencode(base64_encode($response['message'])));
+}else{
+	header("Location:../Menu.php"."?msg=".urlencode(base64_encode($response['message'])));
+}
+
 die();

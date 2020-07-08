@@ -30,7 +30,6 @@ error_reporting(0);
           //display messages encoded in return url
           if ($_GET['msg']) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
-              header("Location:Menu.php");
           }
           //Calling DbOperations
           require_once 'scripts/DbOperations.php';
@@ -167,9 +166,6 @@ error_reporting(0);
                 <label for="psw" style="color:black;"><b>Password</b></label>
                 <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
               </div>
-              <label>
-                <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Remember me
-              </label>
               <div class="row-2">
                 <button class="btn col btn3" type="submit">Login</button>
               </div>

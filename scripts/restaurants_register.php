@@ -23,7 +23,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	if($result == 1){
 		$response['error'] = false;
 		$response['message'] = "User registered successfully";
-		$_SESSION["name"] = $_POST['uname'];
 		$_SESSION["email"] = $_POST['email'];
 		$_SESSION["type"] = "restaurants";
 	}elseif($result == 2){
@@ -44,5 +43,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 echo json_encode($response);
 
-header("Location:../RestaurantHome.php");
+if($_POST['id']==1 && 	$response['error'] == true){
+	header("Location: ../Index.php"."?msg=".urlencode(base64_encode($response['message'])));
+}else{
+	header("Location:../RestaurantHome.php"."?msg=".urlencode(base64_encode($response['message'])));
+}
 die();

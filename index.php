@@ -33,7 +33,7 @@ error_reporting(0);
         //display messages encoded in return url
         if ($_GET['msg']) {
           echo '<div class="alert alert-success">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
-          header("Location:index.php");
+          $_GET['msg']=array();
         }
         ?>
       </div>
@@ -102,6 +102,7 @@ error_reporting(0);
               <div class="row-2">
                 <label for="email" style="margin-top:2vw;color:black;"><b>Email</b></label>
                 <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="email" required>
+                <input type="hidden" name="id" value="1">
               </div>
               <div class="row-2">
                 <label for="psw" style="color:black;"><b>Password</b></label>
@@ -152,6 +153,7 @@ error_reporting(0);
                     <div class="row-2">
                       <label for="email" style="color:black;"><b>Email</b></label>
                       <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="email" required>
+                      <input type="hidden" name="id" value="1">
                     </div>
                     <div class="row-2">
                       <label for="psw" style="color:black;"><b>Password</b></label>
@@ -171,6 +173,7 @@ error_reporting(0);
                   <div class="row-2">
                     <label for="name" style="margin-top:2vw;color:black;"><b>Resturant Name</b></label>
                     <input type="name" class="col-12 txtfeild " placeholder="Enter Name" name="uname" required>
+                    <input type="hidden" name="id" value="1">
                   </div>
                   <div class="row-2">
                     <label for="email" style="color:black;"><b>Email</b></label>
