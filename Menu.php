@@ -31,6 +31,7 @@ session_start();
 
           if ($_GET['msg']) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+              header("Location: http://localhost/skel/Menu.php");
           }
 
           require_once 'scripts/DbOperations.php';
@@ -43,19 +44,25 @@ session_start();
             $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
             if ($res == 1) {
               $response['message'] = "Success";
+              echo '<div class="alert alert-success  "> "Order Placed" </div>';
             } else {
               $response['message'] = "Failed";
               echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
             }
+            $_POST = array();
+            $res=0;
           }
 
           if (isset($_POST['PlaceOrder'])){
             $res = $db->addToOrder($_SESSION['email']);
-            if($res==1)
+            if($res==1){
               echo '<div class="alert alert-success  "> "Order Placed" </div>';
-            else
-            echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
+            }
+            else{
+              echo '<div class="alert alert-danger  "> "Failed! Try Again" </div>';
 
+            }
+            $res=0;
           }
           ?>
         </div>
@@ -105,7 +112,7 @@ session_start();
         $data = $res->get_result();
         while ($dt = $data->fetch_assoc()) { ?>
           <div class=" col-xl-3 col-md-4 col-xs-12 col-sm-6 d-flex align-items-stretch no-gutters" >
-            <form method="post">
+            <form method="post" style="margin-top:20px;">
               <div class="card  bg-dark card_prop2 " >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
@@ -340,6 +347,12 @@ session_start();
     </div>
   </div>
 
+
+  <script>
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+  }
+  </script>
 
 <script>
 //disappearing alert after 2 sec
