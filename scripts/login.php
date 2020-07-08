@@ -18,11 +18,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		   $db = new DbOperations();
        $res=$db->userLogin($_POST['email'], $_POST['psw']);
        if($res == 2){
-   			$addr='http://localhost/skel/Menu.php';
+   			$addr='../Menu.php';
 				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "foodies";
    		}else if($res == 1){
-        $addr='http://localhost/skel/RestaurantHome.php';
+        $addr='../RestaurantHome.php';
 				$_SESSION["email"] = $_POST['email'];
 				$_SESSION["type"] = "restaurants";
       }
@@ -44,5 +44,5 @@ echo json_encode($response);
 if($addr)
 	header("Location: $addr"."?msg=".urlencode(base64_encode("Success!")));
 else
-	header("Location: http://localhost/skel/index.php?msg=". urlencode(base64_encode("Error!")));
+	header("Location:../index.php?msg=". urlencode(base64_encode("Error!")));
 die();

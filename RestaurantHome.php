@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (strcmp($_SESSION['type'], "restaurants")!=0) {
-    header('Location: http://localhost/skel/index.php?msg=' . urlencode(base64_encode("Not authorized")));
+    header('Location:index.php?msg=' . urlencode(base64_encode("Not authorized")));
 }?>
 <DOCTYPE html>
   <html lang="en">

@@ -200,5 +200,8 @@ body.modal-open-noscroll {
 @media only screen and (max-width: 900px) {
   .card_prop2{
     margin:20px;
+    margin-top: 30px;
+    margin-right: 150px;
+
   }
 }

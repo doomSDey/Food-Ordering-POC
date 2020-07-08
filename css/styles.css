@@ -1,60 +1,59 @@
+/* Body style with background properties and scrollbar properties*/
+
 body, html {
   height: 100%;
   margin: 0;
 }
 
-
 .bg {
   /* The image used */
   background-image: url("../img/home.jpg");
-
   /* Full height */
   height: 100%;
-
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+
+
+  body::-webkit-scrollbar-track
+  {
+  	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  	border-radius: 10px;
+  	background-color: #F5F5F5;
+  }
+
+  body::-webkit-scrollbar
+  {
+  	width: 1px;
+  	background-color: #F5F5F5;
+  }
+
+  body::-webkit-scrollbar-thumb
+  {
+  	border-radius: 10px;
+  	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  	background-color: #555;
+  }
 }
 
-.signin {
-
-  color: white;
-  transition: transform .4s; /* Animation */
-
-}
-
-.right {
-  float: right;
-  justify-content: flex-end;
-  color: white;
-}
-
-.alert{
-  height: 10px;
-  font-size: 0.5vw;
-  line-height: 0.25vw;
-  margin: auto;
-  align-items: center;
-}
 
 
-.signin:hover{
+.signin:hover {
   cursor: pointer;
   transform: scale(1.3);
 }
 
-
-.cname{
+.cname {
   font-size: 7vw;
-  font-weight:lighter;
+  font-weight: lighter;
   color: white;
   font-family: Helvetica, sans-serif;
   margin-bottom: -1vw;
 }
 
-.logo{
+.logo {
   display: flex;
   height: 50%;
   align-items: flex-end;
@@ -63,7 +62,7 @@ body, html {
   margin-bottom: auto;
 }
 
-.tag{
+.tag {
   text-align: center;
   color: white;
   font-size: 2vw;
@@ -71,7 +70,7 @@ body, html {
   margin: auto;
 }
 
-.btn{
+.btn {
   border-radius: 25px;
   border-color: white;
   color: white;
@@ -79,7 +78,7 @@ body, html {
   font-size-adjust: 0.58;
 }
 
-.search{
+.search {
   border-radius: 25px;
   margin-top: 4vw;
   text-align: left;
@@ -87,61 +86,60 @@ body, html {
   border: 0;
   margin-right: 0px;
   height: 40px;
-  outline : none;
-  vertical-align:middle;
+  outline: none;
+  vertical-align: middle;
   overflow-x: hidden;
 }
 
-.btn5{
+.btn5 {
   margin-right: 10px;
   margin-top: 10px;
-  color:white;
+  color: white;
   border-color: grey;
 }
 
-.btn5:hover{
+.btn5:hover {
   color: white;
   border-color: white;
 }
 
-.btn4{
-  color:black;
+.btn4 {
+  color: black;
   border-color: grey;
 }
 
-.btn4:hover{
+.btn4:hover {
   border-color: black;
 }
 
-.btn3{
-  color:black;
-  margin-top:1vw;
+.btn3 {
+  color: black;
+  margin-top: 1vw;
   border-color: grey;
-  margin-bottom:2vw;
+  margin-bottom: 2vw;
 }
 
-.btn3:hover{
+.btn3:hover {
   border-color: black;
 }
 
-.btn2{
+.btn2 {
   align-items: center;
   border-radius: 25px;
   text-align: center;
-  vertical-align:middle;
+  vertical-align: middle;
   margin: auto;
   font-size: 2vw;
   margin-top: 4vw;
   border-color: grey;
-
 }
 
-.btn2:hover{
+.btn2:hover {
   color: white;
   border-color: white;
 }
 
-.btn1{
+.btn1 {
   margin-left: 2vw;
   margin-right: 14vw;
   margin-top: 4vw;
@@ -150,13 +148,13 @@ body, html {
   font-size: 1vw;
 }
 
-.btn1:hover{
+.btn1:hover {
   color: white;
   border-color: white;
 }
 
 /*modal-header*/
-.modal-header{
+.modal-header {
   border: 0px;
   color: black;
   margin-left: 1vw;
@@ -174,11 +172,11 @@ body, html {
   outline: none;
 }
 
-.model-dialog{
+.model-dialog {
   height: 300px;
 }
 
-.modal-content{
+.modal-content {
   border-radius: 25px;
 }
 
@@ -190,17 +188,18 @@ body, html {
   outline: none;
 }
 
-.txtfeild{
+.txtfeild {
   border-radius: 25px;
   outline: none;
   background-color: #dbdbdb;
-  border:3px;
+  border: 3px;
   margin-bottom: 1vw;
 }
 
-.gen{
+.gen {
   font-family: Helvetica, sans-serif;
 }
+
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
@@ -210,6 +209,7 @@ body, html {
 .navbar-brand {
   padding: 0;
 }
+
 .navbar-nav .nav-link {
   padding-top: 0;
   padding-bottom: 0;
@@ -217,12 +217,29 @@ body, html {
   line-height: 50px;
 }
 
+@media only screen and (max-width: 900px) {
+{
+  .btn1{
+    font-size:2vw;
+  }
+}
+
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
 }
 
 @keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
 }

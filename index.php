@@ -33,7 +33,8 @@ session_start();
     error_reporting(0);
 
     if ($_GET['msg']) {
-        echo '<div class="alert alert-success alert ">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+        echo '<div class="alert alert-success">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+        header("Location:index.php");
     }
 
     ?>

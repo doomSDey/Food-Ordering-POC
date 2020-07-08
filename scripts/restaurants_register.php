@@ -44,5 +44,5 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 echo json_encode($response);
 
-header("Location: http://localhost/skel/RestaurantHome.php");
+header("Location:../RestaurantHome.php");
 die();

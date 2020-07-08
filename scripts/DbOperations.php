@@ -151,8 +151,14 @@ class DbOperations{
 		if($stmt->execute()){
 			$stmt = $this->con->prepare("DELETE FROM `orders` WHERE restaurant_email = ? AND dish_name=?");
 			$stmt->bind_param("ss",$email,$dish_name);
-			if($stmt->execute())
-				return 1;
+			if($stmt->execute()){
+				$stmt = $this->con->prepare("DELETE FROM `cart` WHERE restaurant_email = ? AND dish_name=?");
+				$stmt->bind_param("ss",$email,$dish_name);
+				if($stmt->execute())
+					return 1;
+				else
+					return 2;
+			}
 			else
 				return 2;
 		}else

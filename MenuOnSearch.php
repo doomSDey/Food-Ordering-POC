@@ -1,6 +1,5 @@
 <?php
 session_start();
-error_reporting(0);
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -30,7 +29,7 @@ error_reporting(0);
 
           if ($_GET['msg']) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
-              header("Location: http://localhost/skel/Menu.php");
+              header("Location:Menu.php");
           }
 
           require_once 'scripts/DbOperations.php';
@@ -47,6 +46,8 @@ error_reporting(0);
               $response['message'] = "Failed";
               echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
             }
+            header("Location:Menu.php");
+
           }
 
           if (isset($_POST['PlaceOrder'])){
@@ -55,6 +56,7 @@ error_reporting(0);
               echo '<div class="alert alert-success  "> "Order Placed" </div>';
             else
               echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
+            header("Location:Menu.php");
           }
           ?>
         </div>
@@ -140,8 +142,7 @@ error_reporting(0);
           </form>
         </div>
         <?php
-      }
-      ?>
+      }?>
     </div>
    </div>
 
@@ -270,7 +271,8 @@ error_reporting(0);
   <?php
     if(isset($_POST['remove_item'])){
       $res=$db->rem_frm_cart($_POST['dish_name'],$_SESSION['email']);
-      echo 'window.location.reload()';
+      echo '<script>var url = "Menu.php";
+window.location = url;</script>';
     }
    ?>
   <!--Cart Modal -->
