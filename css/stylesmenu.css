@@ -202,6 +202,8 @@ body.modal-open-noscroll {
     margin:20px;
     margin-top: 30px;
     margin-right: 150px;
-
+  }
+  .card_prop2{
+    margin-top: 30px;
   }
 }

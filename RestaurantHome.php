@@ -36,7 +36,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
           if ($_GET['msg'] && $_SESSION['index']==0) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
               $_SESSION['index']=1;
-            }
+          }
           //Calling DbOperations
           require_once 'scripts/DbOperations.php';
           //Intitializing

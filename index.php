@@ -32,8 +32,8 @@ error_reporting(0);
         <div class="col" style="margin-left:35vw;"><?php
         //display messages encoded in return url
         if ($_GET['msg']) {
-          echo '<div class="alert alert-success">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
-          $_GET['msg']=array();
+            echo '<div class="alert alert-success">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+            $_GET['msg']=array();
         }
         ?>
       </div>
@@ -52,7 +52,7 @@ error_reporting(0);
           <button class="btn btn5" data-toggle="modal" data-target="#signin">Sign In </button>
           <?php
         } else {
-          ?>
+            ?>
           <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
           <?php
         }

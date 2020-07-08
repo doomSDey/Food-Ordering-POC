@@ -31,7 +31,7 @@ error_reporting(0);
           if ($_GET['msg'] && $_SESSION['index']==0) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
               $_SESSION['index']=1;
-            }
+          }
 
           //Calling DbOperations
           require_once 'scripts/DbOperations.php';
@@ -48,7 +48,6 @@ error_reporting(0);
                   $response['message'] = "Failed";
                   echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
               }
-
           }
           //php code for placing orders in the cart
           if (isset($_POST['PlaceOrder'])) {
@@ -71,7 +70,7 @@ error_reporting(0);
       <div class="collapse-md navbar-collapse" id="navbarCollapse">
 
         <form class="form-inline ml-auto " action="MenuOnSearch.php" style="margin-top:12px" method="post">
-          <input type="text" class="btn btn5" style="  border-radius: 25px; color:white" name="search" placeholder="Search">
+          <input type="text" class="btn btn5" style="  border-radius: 25px; color:white" name="search" placeholder="Search" required>
           <button type="submit" class="btn btn5" >Search</button>
         </form>
         <div class="navbar-nav text-right">
