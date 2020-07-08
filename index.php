@@ -71,10 +71,10 @@ session_start();
         <h3 class="tag">Food for your soul</h3>
       </div>
 
-      <div class="row ">
-        <form class="offset-2 col-12" action="MenuOnSearch.php" method="post" >
-        <input class="  search" style="width:60%" type="text" name="search" placeholder="    Search..">
-        <button class="col-1 btn btn1" type="submit" name="button"> Go </button>
+      <div class="row row-12">
+        <form class="col-12" style="margin:auto;justify-items:center" action="MenuOnSearch.php" method="post" >
+        <input class="col  search"  style="width:60%;text-align:center;margin-left:19%;" type="text" name="search" placeholder="    Search..">
+        <button class="col-1 btn btn1"  style="margin-right:0px"type="submit" name="button"> Go </button>
         </form>
       </div>
 
@@ -107,9 +107,6 @@ session_start();
                   <label for="psw" style="color:black;"><b>Password</b></label>
                   <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
                 </div>
-                <label>
-                  <input type="checkbox" checked="checked" style="font-color:white;" name="remember"> Remember me
-                </label>
                 <div class="row-2">
                   <button class="btn col btn3" type="submit">Login</button>
                 </div>

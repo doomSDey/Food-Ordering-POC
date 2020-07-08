@@ -147,7 +147,7 @@ body, html {
   margin-top: 4vw;
   align-items: flex-start;
   border-color: grey;
-
+  font-size: 1vw;
 }
 
 .btn1:hover{

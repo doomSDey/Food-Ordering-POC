@@ -128,11 +128,11 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
             $res = $db->addfood($_POST['dishname'], $_POST['price'], $isveg, $file, $user['name'], $_SESSION['email']);
             if ($res == 1) {
                 $response['message'] = "Success";
-                header("Refresh:0");
+                echo '<script>location = self.location</script>';
             } else {
                 $response['message'] = "Failed";
                 //reload page
-                echo 'window.location.reload()';
+                echo '<script>location = self.location</script>';
             }
         } else {
             echo '<script>alert("Duplicate Dish.Insertion Failed")</script>';
@@ -251,11 +251,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
 
-      <script>
-      if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-      }
-      </script>
+
 
       <script>
       //disappearing alert after 2 sec

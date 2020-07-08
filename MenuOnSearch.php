@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+error_reporting(0);
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -70,11 +70,11 @@ session_start();
           <button type="submit" class="btn btn5" >Search</button>
         </form>
         <div class="navbar-nav text-right">
+          <button class="btn btn5"onclick="location.href='Menu.php'"> Menu </button></a>
           <?php
           if (!$_SESSION['email']) { ?>
             <button class="btn btn5" data-toggle="modal" data-target="#signup">Sign Up </button>
             <button class="btn btn5" data-toggle="modal" data-target="#signin">Sign In </button>
-            <button class="btn btn5"onclick="location.href='Menu.php'" >Menu </button></a>
             <?php
           } else {
             if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
