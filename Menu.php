@@ -20,8 +20,8 @@ session_start();
     <title>ConFusion</title>
   </head>
 
+  <!--Body -->
   <body class="bg ">
-    <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
       <a href="index.php" class="navbar-brand">conFUSION</a>
       <div class="row">
