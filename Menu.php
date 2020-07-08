@@ -31,7 +31,7 @@ session_start();
 
           if ($_GET['msg']) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
-              header("Location: http://localhost/skel/Menu.php");
+              header("Location:Menu.php");
           }
 
           require_once 'scripts/DbOperations.php';
@@ -277,7 +277,7 @@ session_start();
   <?php
     if(isset($_POST['remove_item'])){
       $res=$db->rem_frm_cart($_POST['dish_name'],$_SESSION['email']);
-      echo 'window.location.reload()';
+      echo '<script>location=self,</script>';
     }
    ?>
   <!--Cart Modal -->
@@ -304,7 +304,7 @@ session_start();
                   <div class="card col-12  bg-dark " style="color:white"  >
                     <form method="post">
                     <h6 class="card-title " style="margin-left:20px;margin-bottom:-10px;margin-top: 10px;color:white"  name="dish_name">Dish Name:  <?php echo $dt['dish_name']; ?> </h6>
-                    <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                    <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
                     <button type="submit" class="close" name="remove_item" style="margin-top:50px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </form>
                     <div class="card-body">
