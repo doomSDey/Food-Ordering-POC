@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -19,48 +20,48 @@ session_start();
     <title>ConFusion</title>
   </head>
 
+  <!--Body -->
   <body class="bg ">
-    <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
       <a href="index.php" class="navbar-brand">conFUSION</a>
       <div class="row">
         <div class="col" style="margin-left:35vw;">
           <?php
-
+          //display messages encoded in return url
           if ($_GET['msg']) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
               header("Location:Menu.php");
           }
-
+          //Calling DbOperations
           require_once 'scripts/DbOperations.php';
-
+          //Intitializing
           $db = new DbOperations();
-
+          //Php code for adding to cart
           if (isset($_POST['cart']) && isset($_SESSION['email'])) {
-            //print_r($_POST);
-
-            $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
-            if ($res == 1) {
-              $response['message'] = "Success";
-            } else {
-              $response['message'] = "Failed";
-              echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
-            }
-            header("Location:Menu.php");
-
+              //print_r($_POST);
+              $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
+              if ($res == 1) {
+                  $response['message'] = "Success";
+              } else {
+                  $response['message'] = "Failed";
+                  echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
+              }
+              header("Location:Menu.php");
           }
-
-          if (isset($_POST['PlaceOrder'])){
-            $res = $db->addToOrder($_SESSION['email']);
-            if($res==1)
-              echo '<div class="alert alert-success  "> "Order Placed" </div>';
-            else
-              echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
-            header("Location:Menu.php");
+          //php code for placing orders in the cart
+          if (isset($_POST['PlaceOrder'])) {
+              $res = $db->addToOrder($_SESSION['email']);
+              if ($res==1) {
+                  echo '<div class="alert alert-success  "> "Order Placed" </div>';
+              } else {
+                  echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
+              }
+              header("Location:Menu.php");
           }
           ?>
         </div>
       </div>
+      <!--navbar-->
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -74,15 +75,16 @@ session_start();
         <div class="navbar-nav text-right">
           <button class="btn btn5"onclick="location.href='Menu.php'"> Menu </button></a>
           <?php
+          //If in session show or else hide
           if (!$_SESSION['email']) { ?>
             <button class="btn btn5" data-toggle="modal" data-target="#signup">Sign Up </button>
             <button class="btn btn5" data-toggle="modal" data-target="#signin">Sign In </button>
             <?php
           } else {
-            if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
+              if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
 
               <button class="btn btn5" data-toggle="modal" data-target="#carts">Cart </button>
-            <?php }else{ ?>
+            <?php } else { ?>
               <button class="btn btn5" onclick="location.href='RestaurantHome.php'">Home </button>
             <?php } ?>
             <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
@@ -97,11 +99,8 @@ session_start();
     <!--Load data from Menu-->
     <div class="container" style="color:white;    padding-top: 65px; ">
       <div class="row" style="margin:30px;">
-
         <?php
-        require_once 'scripts/DbOperations.php';
-
-        $db = new DbOperations();
+        //Calling Menudata function and setting it in the cards
         $res=$db->searchmenu($_POST['search']);
         //  print_r($res);
         $data = $res->get_result();
@@ -120,9 +119,9 @@ session_start();
                   <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
                   <h6 > <?php
                   if ($dt['isveg']) {
-                    echo "Veg";
+                      echo "Veg";
                   } else {
-                    echo "Non-Veg";
+                      echo "Non-Veg";
                   }
                   ?>
                 </h6>
@@ -131,12 +130,12 @@ session_start();
                 <h6 name= > Contact: <?php echo $dt['restaurant_email']; ?> </h6>
                 <input type="hidden" name="restaurant_email" value="<?php echo $dt['restaurant_email'] ;?>" >
                 <?php if (strcmp($_SESSION['type'], "restaurants")!=0) {
-                  if ($_SESSION['email']) { ?>
+                      if ($_SESSION['email']) { ?>
                     <button type="submit" name="cart" id="cart" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>
                   <?php } else { ?>
                     <a class="btn btn-success" data-toggle="modal" data-target="#signin">Add to Cart </a>
                   <?php } ?>                  <?php
-                } ?>
+                  } ?>
               </div>
             </div>
           </form>
@@ -145,8 +144,6 @@ session_start();
       }?>
     </div>
    </div>
-
-
 
   <!-- Modal Sign In-->
   <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -268,13 +265,15 @@ session_start();
     </div>
   </div>
 
+  <!--Clicking on the X removes Items in the Cart -->
   <?php
-    if(isset($_POST['remove_item'])){
-      $res=$db->rem_frm_cart($_POST['dish_name'],$_SESSION['email']);
-      echo '<script>var url = "Menu.php";
+    if (isset($_POST['remove_item'])) {
+        $res=$db->rem_frm_cart($_POST['dish_name'], $_SESSION['email']);
+        echo '<script>var url = "Menu.php";
 window.location = url;</script>';
     }
    ?>
+
   <!--Cart Modal -->
   <div class="modal fade " id="carts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-dark">
@@ -289,7 +288,7 @@ window.location = url;</script>';
           <form class="animate"  method="post">
             <div class="container">
               <div class="row" >
-
+                <!--Load data from Cart -->
                 <?php
                 $tot=0;
                 $res=$db->cartData($_SESSION['email']);
@@ -327,7 +326,7 @@ window.location = url;</script>';
                 <h4 style="color:white;margin-top:20px;">Total Amount: <?php echo $tot; ?> </h4>
                 <form method="post">
                   <!-- Hiding the Place order button if total amout = 0 -->
-                  <?php if ($tot!=0){ ?>
+                  <?php if ($tot!=0) { ?>
                   <button class="btn btn5 btn-success" type="submit" style="margin-left:20px" name="PlaceOrder">Place Order</button>
                 <?php } ?>
                 </form>
@@ -342,14 +341,17 @@ window.location = url;</script>';
     </div>
   </div>
 
+  <!--Java Scripts -->
+
+  <!--Script to stop the resubmission pop up occuring on refresh-->
   <script>
   if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
   }
   </script>
-
+  <!--Script to make alerts go away after 2 sec -->
 <script>
-//disappearing alert after 2 sec
+  //disappearing alert after 2 sec
 window.setTimeout(function() {
   $(".alert").fadeTo(500, 0).slideUp(500, function(){
     $(this).remove();

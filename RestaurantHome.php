@@ -1,8 +1,11 @@
 <?php
 session_start();
+error_reporting(0);
+//Check if the user is Resturant or else redirect back to index page
 if (strcmp($_SESSION['type'], "restaurants")!=0) {
     header('Location:index.php?msg=' . urlencode(base64_encode("Not authorized")));
 }?>
+
 <DOCTYPE html>
   <html lang="en">
 
@@ -22,19 +25,20 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
     <title>ConFusion</title>
   </head>
 
+<!--Body-->
   <body class="bg">
-
-    <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
       <a href="index.php" class="navbar-brand">conFUSION</a>
       <div class="row">
         <div class="col" style="margin-left:35vw;">
           <?php
+          //Calling DbOperations
           require_once 'scripts/DbOperations.php';
-
+          //Intitializing
           $db = new DbOperations();
+          //if Delete Item button is clicked remove the certain item from the Menu
           if (isset($_POST['delete_items'])) {
-            //print_r($_POST['dish_name']);
+              //print_r($_POST['dish_name']);
               $res=$db->menu_data_delete($_SESSION['email'], $_POST['dish_name']);
               if ($res==1) {
                   echo '<div class="alert alert-success alert "> "Removed Item" </div>';
@@ -47,10 +51,8 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      <!--Navbar-->
       <div class="collapse navbar-collapse" style="justify-content:flex-end;" id="navbarCollapse">
-
-
         <div class="navbar-nav text-right">
           <button class="btn btn5" data-toggle="modal" data-target="#orders">Orders </button>
           <button class="btn btn5"onclick="location.href='Menu.php'" >Menu </button></a>
@@ -58,6 +60,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
     </nav>
+    <!--Load the items provided by the restaurant-->
     <div class="container" style="color:white;    padding-top: 65px; ">
       <div class="row" style="margin:30px;">
         <?php
@@ -91,12 +94,14 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
       }
       ?>
 
+      <!--Code to delete order from the order when clicked on order done-->
       <?php
-        if(isset($_POST['order_done'])){
-          $res=$db->order_done($_POST['dish_name'],$_POST['cust_email']);
+        if (isset($_POST['order_done'])) {
+            $res=$db->order_done($_POST['dish_name'], $_POST['cust_email']);
         }
        ?>
 
+       <!--Add Items Card-->
       <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
         <form>
           <div class="card  bg-dark addItem card_prop" >
@@ -111,7 +116,9 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
       </div>
     </div>
+  </div>
 
+<!--Insert New dish in table php Code-->
     <?php
     if (isset($_POST["insert"])) {
         if ($db->uniquefood($_POST['dishname'], $_SESSION['email'])) {
@@ -139,8 +146,8 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         }
     }
     ?>
-    <!-- Add Items -->
 
+    <!-- Add Items Modal-->
     <div class="modal fade " id="addItems" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -177,7 +184,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
       </div>
     </div>
 
-<!--Logout-->
+<!--Logout Modal-->
     <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content bg-dark">
@@ -189,7 +196,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
     </div>
 
 
-    <!--Order Modal -->
+    <!--Orders Modal -->
     <div class="modal fade " id="orders" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog bg-dark">
         <div class="modal-content bg-dark">
@@ -201,7 +208,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
           <div class="modal-body">
             <div class="container overflow-auto" id="style-1" style="max-height:35vw">
               <div class="row" >
-
+                <!--Display orders-->
                 <?php
                 $tot=0;
                 $res=$db->orderData($_SESSION['email']);
@@ -251,21 +258,25 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
 
+      <!--Java Scripts -->
+
+      <!--Script to stop the resubmission pop up occuring on refresh-->
+
       <script>
       if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
       }
       </script>
+      <!--Script to make alerts go away after 2 sec -->
 
       <script>
-      //disappearing alert after 2 sec
+        //disappearing alert after 2 sec
       window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove();
         });
       }, 2000);
       </script>
-
 
       <script src="jquery/myscripts.js" type="text/javascript"></script>
       <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>

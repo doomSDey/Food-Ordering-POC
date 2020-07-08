@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+error_reporting(0);
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -30,7 +30,6 @@ session_start();
 
       <div class="row">
         <div class="col" style="margin-left:35vw;"><?php
-        error_reporting(0);
         //display messages encoded in return url
         if ($_GET['msg']) {
           echo '<div class="alert alert-success">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
@@ -47,6 +46,7 @@ session_start();
 
       <div class="navbar-nav text-right">
         <?php
+        //If in session show or else hide
         if (!$_SESSION['email']) { ?>
           <button class="btn btn5" data-toggle="modal" data-target="#signup">Sign Up </button>
           <button class="btn btn5" data-toggle="modal" data-target="#signin">Sign In </button>
@@ -206,21 +206,20 @@ session_start();
   <!--Java Scripts -->
   <script src="jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
   <script src="bootstrap-4.3.1-dist/js/bootstrap.bundle.js" type="text/javascript"></script>
+
   <!-- Close modal on clicking outside of the modal -->
   <script>
-  // Get the modal
-  var modal = document.getElementById('signin');
-
-  // When the user clicks anywhere outside of the modal, close it
+    // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   }
   </script>
+
   <!--Script to make alerts go away after 2 sec -->
   <script>
-  //disappearing alert after 2 sec
+    //disappearing alert after 2 sec
   window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
       $(this).remove();
