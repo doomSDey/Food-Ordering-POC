@@ -110,12 +110,12 @@ session_start();
               <div class="card  bg-dark card_prop2 " style=" margin-top: 40px;height:500px;padding:3px;min-width:200px" >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
-                <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
                 <div class="card-body">
                   <img class="img-fluid img-prop"  width="200" height="100" style="max-height:200px;min-height:200px"
                   <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
                   <h6 style="margin-top:10px" name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
-                  <input type="hidden" name="price" value=<?php echo $dt['price'] ;?>>
+                  <input type="hidden" name="price" value="<?php echo $dt['price'] ;?>">
                   <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
                   <h6 > <?php
                   if ($dt['isveg']) {
@@ -126,9 +126,9 @@ session_start();
                   ?>
                 </h6>
                 <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
-                <input type="hidden" name="restaurant" value=<?php echo $dt['restaurant'] ;?> >
+                <input type="hidden" name="restaurant" value="<?php echo $dt['restaurant'] ;?>" >
                 <h6 name= > Contact: <?php echo $dt['restaurant_email']; ?> </h6>
-                <input type="hidden" name="restaurant_email" value=<?php echo $dt['restaurant_email'] ;?> >
+                <input type="hidden" name="restaurant_email" value="<?php echo $dt['restaurant_email'] ;?>" >
                 <?php if (strcmp($_SESSION['type'], "restaurants")!=0) {
                   if ($_SESSION['email']) { ?>
                     <button type="submit" name="cart" id="cart" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>

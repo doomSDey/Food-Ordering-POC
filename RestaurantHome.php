@@ -35,7 +35,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
           $db = new DbOperations();
           if (isset($_POST['delete_items'])) {
-            print_r($_POST['dish_name']);
+            //print_r($_POST['dish_name']);
               $res=$db->menu_data_delete($_SESSION['email'], $_POST['dish_name']);
               if ($res==1) {
                   echo '<div class="alert alert-success alert "> "Removed Item" </div>';
@@ -77,7 +77,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                   <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
                   <h6 style="margin-top:10px"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
                   <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
-                <?php echo  '<input type="hidden" name="dish_name" value= '.$dt['dish_name'].';>'?>
+                  <input type="hidden" name="dish_name" value= "<?php echo $dt['dish_name'];?>"/>
                   <h6 ><?php if ($dt['isveg']) {
             echo "Veg";
         } else {
@@ -215,7 +215,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                         <h6 class="card-title col-9" style="margin-left:20px;margin-top:20px;color:white"  name="dish_name">Dish Name: <?php echo $dt['dish_name']; ?> </h6>
                         <button type="submit" name="order_done" class="btn btn-5 btn-success" style="font-size:1vw;margin-top:20px;height:40px;line-height:20px;" >Done</button>
                         </div>
-                        <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                        <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
                         <div class="card-body">
                           <div class="row">
                             <div class="col-6">
@@ -224,8 +224,8 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                           echo $arr['name'];
                           ?>
                           <!--Hidden Inputs for deleting orders -->
-                          <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
-                          <input type="hidden" name="cust_email" value=<?php echo $dt['cust_email'];?>>
+                          <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
+                          <input type="hidden" name="cust_email" value="<?php echo $dt['cust_email'];?>">
                           <h6 > Price: Rs. <?php
                           $tot=$tot+1;
                           echo  $dt['price'];
