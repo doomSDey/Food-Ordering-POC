@@ -10,7 +10,8 @@ $response = array();
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	if (isset($_POST['uname']) and
 	isset($_POST['email']) and
-	isset($_POST['psw'])) {
+	isset($_POST['psw']) and
+	isset($_POST['address'])){
 		//operate the data further
 
 		$db = new DbOperations();
@@ -21,11 +22,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$isveg=0;
 		}
 
-		$result = $db->createFoodietUser(
+		$result = $db->createFoodieUser(
 			$_POST['uname'],
 			$_POST['psw'],
 			$_POST['email'],
-			$isveg
+			$isveg,
+			$_POST['address']
 		);
 
 		if ($result == 1) {

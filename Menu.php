@@ -41,12 +41,12 @@ error_reporting(0);
               $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
               if ($res == 1) {
                   $response['message'] = "Success";
+                  echo '<div class="alert alert-success  "> "Success" </div>';
               } else {
                   $response['message'] = "Failed";
                   echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
               }
-              $_POST = array();
-              $res=0;
+          
           }
           //php code for placing orders in the cart
           if (isset($_POST['PlaceOrder'])) {
@@ -213,8 +213,12 @@ error_reporting(0);
                       <input type="email" class="col-12 txtfeild" placeholder="Enter Email" name="email" required>
                     </div>
                     <div class="row-2">
+                      <label for="text" style="color:black;"><b>Address</b></label>
+                      <input type="text" class="col-12 txtfeild" placeholder="Enter Address" name="address" required>
+                    </div>
+                    <div class="row-2">
                       <label for="psw" style="color:black;"><b>Password</b></label>
-                      <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                      <input type="password" class="col-12 txtfeild"  minlength="8" placeholder="Enter Password(8 character minimum)" name="psw" required>
                     </div>
                     <label>
                       <input type="checkbox" checked="checked" style="font-color:white;" name="isveg" value="veg"> Veg
@@ -237,7 +241,7 @@ error_reporting(0);
                   </div>
                   <div class="row-2">
                     <label for="psw" style="color:black;"><b>Password</b></label>
-                    <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                    <input type="password" class="col-12 txtfeild"  minlength="8" placeholder="Enter Password(8 character minimum)" name="psw" required>
                   </div>
                   <div class="row-2">
                     <button class="btn col btn3" name="submit" type="submit">Sign Up</button>

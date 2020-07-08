@@ -156,8 +156,12 @@ error_reporting(0);
                       <input type="hidden" name="id" value="1">
                     </div>
                     <div class="row-2">
+                      <label for="text" style="color:black;"><b>Address</b></label>
+                      <input type="text" class="col-12 txtfeild" placeholder="Enter Address" name="address" required>
+                    </div>
+                    <div class="row-2">
                       <label for="psw" style="color:black;"><b>Password</b></label>
-                      <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                      <input type="password" minlength="8" class="col-12 txtfeild" placeholder="Enter Password(8 character minimum)" name="psw" required>
                     </div>
                     <label>
                       <input type="checkbox" checked="checked" style="font-color:white;" name="isveg" value="veg"> Veg
@@ -181,7 +185,7 @@ error_reporting(0);
                   </div>
                   <div class="row-2">
                     <label for="psw" style="color:black;"><b>Password</b></label>
-                    <input type="password" class="col-12 txtfeild" placeholder="Enter Password" name="psw" required>
+                    <input type="password" class="col-12 txtfeild"  minlength="8" placeholder="Enter Password(8 character minimum)" name="psw" required>
                   </div>
                   <div class="row-2">
                     <button class="btn col btn3" name="submit" type="submit">Sign Up</button>

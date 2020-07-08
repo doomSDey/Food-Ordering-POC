@@ -34,14 +34,14 @@ class DbOperations
 	}
 
 //Create new Foodie User
-	public function createFoodietUser($uname, $psw, $email, $isveg)
+	public function createFoodieUser($uname, $psw, $email, $isveg, $address)
 	{
 		if ($this->isUserExistFoodie($email)) {
 			return 0;
 		} else {
 			$password = md5($psw);
-			$stmt = $this->con->prepare("INSERT INTO `foodies` (`name`, `password`, `email`,`isveg`) VALUES (?, ?, ?, ?);");
-			$stmt->bind_param("sssi", $uname, $password, $email, $isveg);
+			$stmt = $this->con->prepare("INSERT INTO `foodies` (`name`, `password`, `email`,`isveg`,`address`) VALUES (?, ?, ?, ?, ?);");
+			$stmt->bind_param("sssis", $uname, $password, $email, $isveg,$address);
 
 			if ($stmt->execute()) {
 				return 1;
@@ -276,6 +276,14 @@ class DbOperations
 	{
 		$stmt = $this->con->prepare("SELECT image FROM `menu` WHERE dish_name = ?");
 		$stmt->bind_param("s", $dish_name);
+		$stmt->execute();
+		return $stmt->get_result()->fetch_assoc();
+	}
+
+	//get address from foodies for the given email
+	public function get_addr($email){
+		$stmt = $this->con->prepare("SELECT address FROM `foodies` WHERE email = ?");
+		$stmt->bind_param("s", $email);
 		$stmt->execute();
 		return $stmt->get_result()->fetch_assoc();
 	}

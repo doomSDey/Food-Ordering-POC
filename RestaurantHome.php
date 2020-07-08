@@ -237,6 +237,9 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                           echo  $dt['price'];
                           ?> </h6>
                           <h6 >  No. of Items: <?php echo $dt['count'];?>
+                          <h6 >  Delivery address: <?php
+                          $arr=$db->get_addr($dt['cust_email']);
+                          echo $arr['address'];?>
                           </div>
                             <div class="row-4 ">
                               <?php $image=$db->get_image($dt['dish_name']) ?>
