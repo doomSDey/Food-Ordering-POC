@@ -160,7 +160,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                 </div>
                 <div class="row-2">
                   <label for="price" style="color:black;"><b>Price</b></label>
-                  <input type="text" class="col-12 txtfeild" placeholder="Enter Price" name="price" required>
+                  <input type="number" step="0.01" min=0 class="col-12 txtfeild" placeholder="Enter Price" name="price" required>
                 </div>
                 <label for="image" style="color:black;"><b>Image</b></label>
                 <input type="file" class="col-12" id="image" style="margin-bottom:1vw;" name="image" required>

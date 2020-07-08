@@ -1,6 +1,5 @@
 <?php
 session_start();
-error_reporting(0);
 
 ?>
 <DOCTYPE html>
@@ -25,25 +24,40 @@ error_reporting(0);
   <body class="bg ">
     <!--     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">  for dark navbar-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
-      <a href="Menu.php" class="navbar-brand">conFUSION</a>
+      <a href="index.php" class="navbar-brand">conFUSION</a>
       <div class="row">
         <div class="col" style="margin-left:35vw;">
           <?php
+          error_reporting(0);
+
+          if ($_GET['msg']) {
+              echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+          }
+
           require_once 'scripts/DbOperations.php';
 
           $db = new DbOperations();
 
           if (isset($_POST['cart']) && isset($_SESSION['email'])) {
             //print_r($_POST);
-            $res = $db->addOrder($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
+
+            $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
             if ($res == 1) {
               $response['message'] = "Success";
             } else {
               $response['message'] = "Failed";
+              echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
             }
-            echo '<div class="alert alert-success alert "> "Added to Cart" </div>';
           }
 
+          if (isset($_POST['PlaceOrder'])){
+            $res = $db->addToOrder($_SESSION['email']);
+            if($res==1)
+              echo '<div class="alert alert-success  "> "Order Placed" </div>';
+            else
+            echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
+
+          }
           ?>
         </div>
       </div>
@@ -62,12 +76,14 @@ error_reporting(0);
           if (!$_SESSION['email']) { ?>
             <button class="btn btn5" data-toggle="modal" data-target="#signup">Sign Up </button>
             <button class="btn btn5" data-toggle="modal" data-target="#signin">Sign In </button>
-
+            <button class="btn btn5"onclick="location.href='Menu.php'" >Menu </button></a>
             <?php
           } else {
             if (strcmp($_SESSION['type'], "restaurants")!=0) {            ?>
 
               <button class="btn btn5" data-toggle="modal" data-target="#carts">Cart </button>
+            <?php }else{ ?>
+              <button class="btn btn5" onclick="location.href='RestaurantHome.php'">Home </button>
             <?php } ?>
             <button class="btn btn5" data-toggle="modal" data-target=".bs-example-modal-sm">Logout </button>
 
@@ -78,6 +94,7 @@ error_reporting(0);
       </div>
     </nav>
 
+    <!--Load data from Menu-->
     <div class="container" style="color:white;    padding-top: 65px; ">
       <div class="row" style="margin:30px;">
 
@@ -128,7 +145,7 @@ error_reporting(0);
       }
       ?>
     </div>
-  </div>
+   </div>
 
 
 
@@ -252,16 +269,23 @@ error_reporting(0);
     </div>
   </div>
 
+  <?php
+    if(isset($_POST['remove_item'])){
+      $res=$db->rem_frm_cart($_POST['dish_name'],$_SESSION['email']);
+      echo 'window.location.reload()';
+    }
+   ?>
   <!--Cart Modal -->
   <div class="modal fade " id="carts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-dark">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h4 class="modal-title" style="color:white" id="myModalLabel">Cart</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ">
+          <div class="container overflow-auto scrollbar" id="style-1" style="max-height:35vw">
+
           <form class="animate"  method="post">
             <div class="container">
               <div class="row" >
@@ -273,11 +297,14 @@ error_reporting(0);
                 $data = $res->get_result();
                 while ($dt = $data->fetch_assoc()) { ?>
                   <div class="card col-12  bg-dark " style="color:white"  >
-
-                    <h6 class="card-title " style="margin-left:20px;padding-bottom:-30px;color:white"  name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
+                    <form method="post">
+                    <h6 class="card-title " style="margin-left:20px;margin-bottom:-10px;margin-top: 10px;color:white"  name="dish_name">Dish Name:  <?php echo $dt['dish_name']; ?> </h6>
                     <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                    <button type="submit" class="close" name="remove_item" style="margin-top:50px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </form>
                     <div class="card-body">
-
+                      <div class="row">
+                      <div class="col-6">
                       <h6  name="price"> Price: Rs. <?php
                       $tot=$tot+($dt['price']*$dt['count']);
                       echo  $dt['price'];
@@ -286,15 +313,30 @@ error_reporting(0);
                       </h6>
                       <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
                     </div>
+                    <div class="row-4 ">
+                      <?php $image=$db->get_image($dt['dish_name']) ?>
+                      <img class="img-fluid thumbn"
+                      <?php echo' src = "data:image/jpeg;base64,'.base64_encode($image['image']).'"' ?>/>
+                    </div>
+                    </div>
+                    </div>
                   </div>
                   <?php
                 }
                 ?>
-                <h4 style="color:white;margin-top:10px;">Total Amount: <?php echo $tot; ?> </h4>
+                <h4 style="color:white;margin-top:20px;">Total Amount: <?php echo $tot; ?> </h4>
+                <form method="post">
+                  <!-- Hiding the Place order button if total amout = 0 -->
+                  <?php if ($tot!=0){ ?>
+                  <button class="btn btn5 btn-success" type="submit" style="margin-left:20px" name="PlaceOrder">Place Order</button>
+                <?php } ?>
+                </form>
+
               </div>
             </div>
           </div>
         </form>
+      </div>
       </div>
 
     </div>
