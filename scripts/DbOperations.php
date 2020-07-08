@@ -157,7 +157,6 @@ class DbOperations{
 				return 2;
 		}else
 			return 2;
-
 	}
 
 	public function uniquefood($dish_name,$email){

@@ -35,6 +35,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
           $db = new DbOperations();
           if (isset($_POST['delete_items'])) {
+            print_r($_POST['dish_name']);
               $res=$db->menu_data_delete($_SESSION['email'], $_POST['dish_name']);
               if ($res==1) {
                   echo '<div class="alert alert-success alert "> "Removed Item" </div>';
@@ -66,17 +67,17 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         while ($dt = $data->fetch_assoc()) { ?>
           <div class="col-lg-3 col-md-5 col-xs-12 d-flex align-items-stretch no-gutters" >
             <form method="post">
-              <div class="card  bg-dark " style="height:380px;" >
-                <div class="row " style="margin-left:5px">
+              <div class="card  bg-dark card_prop " >
+                <div class="row " style="margin-left:5px;margin-right:5px;">
                   <h6 class="card-title " style="margin:20px; "> <?php echo $dt['dish_name']; ?> </h6>
                   <button type="submit" name="delete_items" id="delete_items" class="close" style="margin-top:-5px" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="card-body">
-                  <img class="img-fluid "  width="200" height="100"
+                  <img class="img-fluid img-prop"
                   <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
                   <h6 style="margin-top:10px"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
                   <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
-                  <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                <?php echo  '<input type="hidden" name="dish_name" value= '.$dt['dish_name'].';>'?>
                   <h6 ><?php if ($dt['isveg']) {
             echo "Veg";
         } else {
@@ -99,7 +100,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
       <div class="col-lg-4 col-md-3 col-xs-12 d-flex align-items-stretch no-gutters" >
         <form>
-          <div class="card  bg-dark addItem" style="height:380px; max-width:230px;" >
+          <div class="card  bg-dark addItem card_prop" >
             <div class="card-body addItem" >
               <a data-target="#addItems" data-toggle="modal"  >Add Items</a>
               <a data-target="#addItems" data-toggle="modal" >
@@ -111,6 +112,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
 
       </div>
     </div>
+
     <?php
     if (isset($_POST["insert"])) {
         if ($db->uniquefood($_POST['dishname'], $_SESSION['email'])) {
@@ -176,11 +178,12 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
       </div>
     </div>
 
+<!--Logout-->
     <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
-          <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
+        <div class="modal-content bg-dark">
+          <div class="modal-header" style="color:white"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+          <div class="modal-body" style="color:white"><i class="fa fa-question-circle"></i> Are you sure you want to log-out?</div>
           <div class="modal-footer"><a href="scripts/logout.php" class="btn btn-block btn4">Logout</a></div>
         </div>
       </div>

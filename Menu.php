@@ -44,7 +44,6 @@ session_start();
             $res = $db->addToCart($_POST['dish_name'], $_POST['price'], $_SESSION['email'], $_POST['restaurant'], $_POST['restaurant_email']);
             if ($res == 1) {
               $response['message'] = "Success";
-              echo '<div class="alert alert-success  "> "Added to Cart" </div>';
             } else {
               $response['message'] = "Failed";
               echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
@@ -108,12 +107,12 @@ session_start();
         while ($dt = $data->fetch_assoc()) { ?>
           <div class=" col-xl-3 col-md-4 col-xs-12 col-sm-6 d-flex align-items-stretch no-gutters" >
             <form method="post">
-              <div class="card  bg-dark " style=" margin-top: 40px;height:500px;padding:3px;min-width:200px" >
+              <div class="card  bg-dark card_prop2 " style=" margin-top: 40px;height:500px;padding:3px;min-width:200px" >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
                 <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
                 <div class="card-body">
-                  <img class="img-fluid "  width="200" height="100" style="max-height:200px;min-height:200px"
+                  <img class="img-fluid img-prop"  width="200" height="100" style="max-height:200px;min-height:200px"
                   <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
                   <h6 style="margin-top:10px" name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
                   <input type="hidden" name="price" value=<?php echo $dt['price'] ;?>>
@@ -273,7 +272,6 @@ session_start();
     if(isset($_POST['remove_item'])){
       $res=$db->rem_frm_cart($_POST['dish_name'],$_SESSION['email']);
       echo 'window.location.reload()';
-
     }
    ?>
   <!--Cart Modal -->

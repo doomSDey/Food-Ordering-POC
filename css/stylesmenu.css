@@ -49,7 +49,6 @@ body::-webkit-scrollbar-thumb
 	background-color: #555;
 }
 
-
 .bg {
   /* The image used */
   background-image: url("../img/menu.jpeg");
@@ -79,6 +78,26 @@ body.modal-open-noscroll {
   border-color: white;
 }
 
+.card_prop{
+  max-height:380px;
+  max-width:230px;
+  min-width: 230px;
+  min-height: 380px;
+}
+
+.card_prop2{
+  max-height:5500px;
+  max-width:230px;
+  min-width: 230px;
+  min-height: 550px;
+}
+
+.img-prop{
+  max-height:200px;
+  max-width:190px;
+  min-width: 190px;
+  min-height: 200px;
+}
 /* The Close Button */
 .close {
   /* Position it in the top right corner outside of the modal */
@@ -92,11 +111,14 @@ body.modal-open-noscroll {
 }
 
 .thumbn{
+  min-width: 100px;
+  min-height: 70px;
   max-width: 100px;
   max-height: 70px;
-  margin-left: 60px;
+  margin-left: 110px;
 
 }
+
 
 .close:hover {
   color: red;
