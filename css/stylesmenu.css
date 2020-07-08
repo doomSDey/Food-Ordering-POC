@@ -86,10 +86,11 @@ body.modal-open-noscroll {
 }
 
 .card_prop2{
-  max-height:5500px;
+  max-height:500px;
   max-width:230px;
   min-width: 230px;
-  min-height: 550px;
+  min-height: 525px;
+  padding: 3px;
 }
 
 .img-prop{
@@ -111,6 +112,23 @@ body.modal-open-noscroll {
 }
 
 .thumbn{
+  min-width: 70px;
+  min-height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  margin-left: 50px;
+}
+
+.txtfeild{
+  border-radius: 25px;
+  outline: none;
+  background-color: #dbdbdb;
+  border:3px;
+  margin-bottom: 1vw;
+}
+
+
+.thumbn2{
   min-width: 100px;
   min-height: 70px;
   max-width: 100px;

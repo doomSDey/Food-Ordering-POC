@@ -17,7 +17,6 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="css/stylesmenu.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="css/stylessupp.css" type="text/css" rel="stylesheet">
 
 
     <title>ConFusion</title>
@@ -200,7 +199,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
             </button>
           </div>
           <div class="modal-body">
-            <div class="container overflow-auto" style="max-height:35vw">
+            <div class="container overflow-auto" id="style-1" style="max-height:35vw">
               <div class="row" >
 
                 <?php
@@ -234,7 +233,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
                           </div>
                             <div class="row-4 ">
                               <?php $image=$db->get_image($dt['dish_name']) ?>
-                              <img class="img-fluid thumbn"
+                              <img class="img-fluid thumbn2"
                               <?php echo' src = "data:image/jpeg;base64,'.base64_encode($image['image']).'"' ?>/>
                             </div>
                         </div>

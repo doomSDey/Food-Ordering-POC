@@ -16,7 +16,6 @@ session_start();
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="css/stylesmenu.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="css/stylessupp.css" type="text/css" rel="stylesheet">
 
     <title>ConFusion</title>
   </head>
@@ -107,7 +106,7 @@ session_start();
         while ($dt = $data->fetch_assoc()) { ?>
           <div class=" col-xl-3 col-md-4 col-xs-12 col-sm-6 d-flex align-items-stretch no-gutters" >
             <form method="post">
-              <div class="card  bg-dark card_prop2 " style=" margin-top: 40px;height:500px;padding:3px;min-width:200px" >
+              <div class="card  bg-dark card_prop2 " >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
                 <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
@@ -283,7 +282,7 @@ session_start();
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body ">
-          <div class="container overflow-auto scrollbar" id="style-1" style="max-height:35vw">
+          <div class="container overflow-auto" id="style-1" style="max-height:35vw">
 
           <form class="animate"  method="post">
             <div class="container">
