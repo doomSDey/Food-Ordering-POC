@@ -27,10 +27,10 @@ session_start();
       <div class="row">
         <div class="col" style="margin-left:35vw;">
           <?php
-          error_reporting(0);
 
           if ($_GET['msg']) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
+              header("Location: http://localhost/skel/Menu.php");
           }
 
           require_once 'scripts/DbOperations.php';
@@ -54,8 +54,7 @@ session_start();
             if($res==1)
               echo '<div class="alert alert-success  "> "Order Placed" </div>';
             else
-            echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
-
+              echo '<div class="alert alert-success  "> "Failed! Try Again" </div>';
           }
           ?>
         </div>
@@ -110,12 +109,12 @@ session_start();
               <div class="card  bg-dark " style=" margin-top: 40px;height:500px;" >
 
                 <h6 class="card-title " style="margin:20px " name="dish_name"> <?php echo $dt['dish_name']; ?> </h6>
-                <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
                 <div class="card-body">
                   <img class="img-fluid "  width="200" height="100" style="max-height:200px;min-height:200px"
                   <?php echo' src = "data:image/jpeg;base64,'.base64_encode($dt['image']).'"' ?>/>
                   <h6 style="margin-top:10px" name="price"> Price: Rs. <?php echo  $dt['price']; ?> </h6>
-                  <input type="hidden" name="price" value=<?php echo $dt['price'] ;?>>
+                  <input type="hidden" name="price" value="<?php echo $dt['price'] ;?>">
                   <h6 class="badge badge-success"> 4.5 <i class="fa fa-star"> </i> </h6>
                   <h6 > <?php
                   if ($dt['isveg']) {
@@ -126,9 +125,9 @@ session_start();
                   ?>
                 </h6>
                 <h6 > Offered by: <?php echo $dt['restaurant']; ?></h6>
-                <input type="hidden" name="restaurant" value=<?php echo $dt['restaurant'] ;?> >
+                <input type="hidden" name="restaurant" value="<?php echo $dt['restaurant'] ;?>" >
                 <h6 name= > Contact: <?php echo $dt['restaurant_email']; ?> </h6>
-                <input type="hidden" name="restaurant_email" value=<?php echo $dt['restaurant_email'] ;?> >
+                <input type="hidden" name="restaurant_email" value="<?php echo $dt['restaurant_email'] ;?>" >
                 <?php if (strcmp($_SESSION['type'], "restaurants")!=0) {
                   if ($_SESSION['email']) { ?>
                     <button type="submit" name="cart" id="cart" class="btn btn-success" style="  justify-content: flex-end;" >Add to Cart</button>
@@ -298,7 +297,7 @@ session_start();
                   <div class="card col-12  bg-dark " style="color:white"  >
                     <form method="post">
                     <h6 class="card-title " style="margin-left:20px;margin-bottom:-10px;margin-top: 10px;color:white"  name="dish_name">Dish Name:  <?php echo $dt['dish_name']; ?> </h6>
-                    <input type="hidden" name="dish_name" value=<?php echo $dt['dish_name'];?>>
+                    <input type="hidden" name="dish_name" value="<?php echo $dt['dish_name'];?>">
                     <button type="submit" class="close" name="remove_item" style="margin-top:50px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </form>
                     <div class="card-body">
@@ -341,6 +340,11 @@ session_start();
     </div>
   </div>
 
+  <script>
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+  }
+  </script>
 
 <script>
 //disappearing alert after 2 sec

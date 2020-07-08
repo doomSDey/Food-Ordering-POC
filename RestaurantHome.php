@@ -251,6 +251,11 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
 
+      <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+      </script>
 
       <script>
       //disappearing alert after 2 sec
