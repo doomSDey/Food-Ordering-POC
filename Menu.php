@@ -28,9 +28,11 @@ error_reporting(0);
         <div class="col" style="margin-left:35vw;">
           <?php
           //display messages encoded in return url
-          if ($_GET['msg']) {
+          if ($_GET['msg'] && $_SESSION['index']==0) {
               echo '<div class="alert alert-success alert">' . base64_decode(urldecode($_GET['msg'])) . '</div>';
-          }
+              $_SESSION['index']=1;
+            }
+
           //Calling DbOperations
           require_once 'scripts/DbOperations.php';
           //Intitializing
@@ -46,7 +48,7 @@ error_reporting(0);
                   $response['message'] = "Failed";
                   echo '<div class="alert alert-danger  "> "Failed! Please Try again" </div>';
               }
-          
+
           }
           //php code for placing orders in the cart
           if (isset($_POST['PlaceOrder'])) {

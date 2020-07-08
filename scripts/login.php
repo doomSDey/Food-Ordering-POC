@@ -20,10 +20,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$addr='../Menu.php';
 			$_SESSION["email"] = $_POST['email'];
 			$_SESSION["type"] = "foodies";
+			$response['message'] = "Success";
 		} elseif ($res == 1) {
 			$addr='../RestaurantHome.php';
 			$_SESSION["email"] = $_POST['email'];
 			$_SESSION["type"] = "restaurants";
+			$response['message'] = "Success";
 		} else {
 			$response['error'] = true;
 			$response['message'] = "Invalid username or password";
@@ -36,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$response['error'] = true;
 	$response['message'] = "Invalid Request";
 }
+$_SESSION['index']=0;
+
 if($response['error'] == true && $_POST['id']==1){
 	header("Location:../Index.php"."?msg=".urlencode(base64_encode($response['message'])));
 }else{
