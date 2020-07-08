@@ -64,7 +64,7 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         $res=$db->menudatares($_SESSION['email']);
         $data = $res->get_result();
         while ($dt = $data->fetch_assoc()) { ?>
-          <div class="col-lg-3 col-md-5 col-xs-12 d-flex align-items-stretch no-gutters" >
+          <div class="col-xl-3 col-md-4 col-xs-12 col-sm-6 d-flex align-items-stretch no-gutters" >
             <form method="post">
               <div class="card  bg-dark card_prop " >
                 <div class="row " style="margin-left:5px;margin-right:5px;">
@@ -251,7 +251,11 @@ if (strcmp($_SESSION['type'], "restaurants")!=0) {
         </div>
       </div>
 
-
+      <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+      </script>
 
       <script>
       //disappearing alert after 2 sec
