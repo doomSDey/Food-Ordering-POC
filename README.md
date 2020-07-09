@@ -13,6 +13,6 @@
 - Adding and removal of dish from the cart by customer and dish from menu
 - No duplicate dish per restaurant
 
-##Drawbacks:
+## Drawbacks:
 - UI gets distorted in mobile view
 
